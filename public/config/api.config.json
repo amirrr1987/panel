@@ -1,0 +1,16 @@
+{
+  "baseURL": "http://10.0.85.27:8093/api/",
+  "Auth": {
+    "V1": {
+      "Login": "v1/Auth/Login",
+      "Register": "v1/Auth/register",
+      "ForgotPassword": "v1/Auth/forgot-password",
+      "ResetPassword": "v1/Auth/reset-password"
+    }
+  },
+  "Users": {
+    "V1": {
+      "CreateUser": "v1/Users/CreateUser"
+    }
+  }
+}
