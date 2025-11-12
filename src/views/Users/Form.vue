@@ -1,14 +1,14 @@
 <template>
-  <Card title="Users List">
+  <Card>
     <Table :columns="columns" :dataSource="users" :loading="isLoading">
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'roles' && record.roles?.length > 0">
           <Tag v-for="role in record.roles" :key="role">{{ role }}</Tag>
         </template>
         <template v-if="column.dataIndex === 'claims'">
-          <Tag v-for="claim in record.claims" :key="claim.type" :color="claim.color">
-            {{ claim.type }}
-          </Tag>
+          <Tag v-for="claim in record.claims" :key="claim.type" :color="claim.color">{{
+            claim.type
+          }}</Tag>
         </template>
       </template>
     </Table>

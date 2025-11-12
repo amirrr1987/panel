@@ -28,7 +28,7 @@ import {
 } from '@ant-design/icons-vue'
 import { useAuthStore } from '@/stores/auth.store'
 import { useRouter } from 'vue-router'
-import logo from '@/assets/images/logo-22.webp'
+
 const { t } = useTranslation()
 const router = useRouter()
 const open = ref(false)
@@ -67,9 +67,8 @@ watch(
 
 <template>
   <LayoutHeader class="flex items-center justify-between px-8!">
-    <div>sdf
-
-      <img :src="logo" alt="logo" class="w-10 h-10" />
+    <div>
+      <img src="@/assets/images/logo-3.webp" alt="logo" class="h-12" />
     </div>
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
