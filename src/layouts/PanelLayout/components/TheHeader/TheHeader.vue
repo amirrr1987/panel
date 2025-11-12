@@ -64,7 +64,7 @@ watch(
 </script>
 
 <template>
-  <LayoutHeader class="flex items-center justify-between">
+  <LayoutHeader class="flex items-center justify-between px-4!">
     <div></div>
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
