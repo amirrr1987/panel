@@ -47,6 +47,7 @@ export default {
     fullContentExit: ' Exit Full Content',
     language: 'Language',
     radius: 'Radius',
-    panelGuide: 'Panel guide'
+    panelGuide: 'Panel guide',
+    changePassword: 'Change Password',
   },
 };

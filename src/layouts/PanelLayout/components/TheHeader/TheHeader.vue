@@ -27,8 +27,9 @@ import {
   InfoCircleOutlined,
 } from '@ant-design/icons-vue'
 import { useAuthStore } from '@/stores/auth.store'
+import { useRouter } from 'vue-router'
 const { t } = useTranslation()
-
+const router = useRouter()
 const open = ref(false)
 const tourStore = useTourStore()
 const themeStore = useThemeStore()
@@ -64,7 +65,7 @@ watch(
 </script>
 
 <template>
-  <LayoutHeader class="flex items-center justify-between px-4!">
+  <LayoutHeader class="flex items-center justify-between px-8!">
     <div></div>
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
@@ -76,7 +77,7 @@ watch(
           </Button>
           <template #overlay>
             <Menu>
-              <MenuItem>
+              <MenuItem @click="router.push({ name: 'TheProfile' })">
                 <template #icon>
                   <UserOutlined />
                 </template>

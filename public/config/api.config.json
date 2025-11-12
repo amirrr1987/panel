@@ -10,7 +10,7 @@
   },
   "Users": {
     "V1": {
-      "CreateUser": "v1/Users/CreateUser"
+      "CreateUser": "Users/CreateUser"
     }
   }
 }

@@ -1,11 +1,10 @@
-import { reactive, ref, computed, shallowRef, watchEffect, watch } from 'vue'
+import { reactive, computed, watch } from 'vue'
 import { defineStore } from 'pinia'
 import { theme as antTheme } from 'ant-design-vue/es'
 import type { AliasToken } from 'ant-design-vue/es/theme/internal'
 import type { OverrideToken } from 'ant-design-vue/es/theme/interface'
 import type { MappingAlgorithm, SizeType } from 'ant-design-vue/es/config-provider/context'
 import { useStorage } from '@vueuse/core'
-import type { Transition } from '@/types'
 import { i18n } from '@/i18n'
 import { colors } from '@/config/color.config'
 

@@ -11,10 +11,7 @@
       >
         <Input v-model:value="loginData.username" placeholder="Username">
           <template #prefix>
-            <Icon
-              icon="mdi:account"
-              :style="{ fontSize: themeStore.token?.fontSize ?? 14 + 'px' }"
-            />
+            <UserOutlined />
           </template>
         </Input>
       </FormItem>
@@ -23,41 +20,60 @@
         name="password"
         :rules="[{ required: true, message: 'Please input your password' }]"
       >
-        <Input v-model:value="loginData.password" placeholder="Password" />
+        <Input
+          :type="showPassword ? 'text' : 'password'"
+          v-model:value="loginData.password"
+          placeholder="Password"
+        >
+          <template #prefix>
+            <LockOutlined />
+          </template>
+          <template #suffix>
+            <EyeInvisibleOutlined v-if="showPassword" @click="showPassword = !showPassword" />
+            <EyeOutlined v-else @click="showPassword = !showPassword" />
+          </template>
+        </Input>
       </FormItem>
+      <FormItem> </FormItem>
       <FormItem>
-        <Button type="primary" html-type="submit" :loading="loading" block>{{
-          $t('login')
-        }}</Button>
+        <Button type="primary" html-type="submit" :loading="loading" block>
+          {{ $t('login') }}
+        </Button>
       </FormItem>
     </Form>
+    <Divider />
+
+    <Button type="link" block @click="router.push({ name: 'TheRegister' })">
+      {{ $t('register') }}
+    </Button>
   </Card>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
-import { Form, FormItem, Input, Button, Card } from 'ant-design-vue/es'
+import { Form, FormItem, Input, Button, Card, Divider } from 'ant-design-vue/es'
 import { useAuthStore } from '@/stores/auth.store'
-import type { LoginRequestBody } from '@/interfaces/auth.interface'
-import { Icon } from '@iconify/vue'
-import { useThemeStore } from '@/stores/theme.store'
+import type { ILoginRequest } from '@/interfaces/auth.interface'
 import { useRouter } from 'vue-router'
+import {
+  UserOutlined,
+  LockOutlined,
+  EyeInvisibleOutlined,
+  EyeOutlined,
+} from '@ant-design/icons-vue'
 const router = useRouter()
 const authStore = useAuthStore()
-const themeStore = useThemeStore()
 const loading = ref(false)
-const loginData = ref<LoginRequestBody>({
+const showPassword = ref(false)
+const loginData = ref<ILoginRequest>({
   username: 'fw.super.admin1404@gmail.com',
   password: '@FremeWork#1404',
-  grant_type: '',
-  client_id: '',
-  client_secret: '',
 })
 const onLogin = async () => {
   try {
     loading.value = true
     await authStore.login(loginData.value)
     console.log(authStore.loginData)
-    router.push('/')
+    router.push({ name: 'TheDashboard' })
     loading.value = false
   } catch (error) {
     loading.value = false

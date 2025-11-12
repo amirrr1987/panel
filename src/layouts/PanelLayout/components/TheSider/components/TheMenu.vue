@@ -1,5 +1,5 @@
 <template>
-  <Menu class="h-full" mode="inline" v-model:selectedKeys="selectedKeys">
+  <Menu class="h-full" mode="inline" v-model:selectedKeys="menuNames">
     <MenuItem v-for="item in panelMenu" :key="item.name">
       <template #icon>
         <Icon :icon="item.icon" />
@@ -11,18 +11,28 @@
 <script setup lang="ts">
 import { Menu, MenuItem } from 'ant-design-vue/es'
 import { Icon } from '@iconify/vue'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { panelMenu } from '@/config/menu.config'
-const selectedKeys = ref(['home'])
+const menuNames = ref(['TheDashboard'])
 const route = useRoute()
-onMounted(() => {
-  selectedKeys.value = ['TheDashboard']
-  const name = route.name
-  if (name === 'TheDashboard') {
-    selectedKeys.value = ['TheDashboard']
-  } else if (name === 'ThePage') {
-    selectedKeys.value = ['ThePage']
+
+const findMenuName = (name: string) => {
+  return panelMenu.find((item) => item.name === name)
+}
+const setMenuKeys = (name: string) => {
+  if (!name) {
+    menuNames.value = []
+  } else {
+    menuNames.value = [name]
   }
+}
+onMounted(() => {
+  const menuName = findMenuName(route.name as string)?.name || ''
+  setMenuKeys(menuName)
 })
+watch(
+  () => route.name,
+  (newName) => setMenuKeys(newName as string),
+)
 </script>

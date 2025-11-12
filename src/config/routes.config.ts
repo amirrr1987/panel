@@ -18,6 +18,12 @@ const routes: RouteRecordRaw[] = [
         meta: { label: 'page', icon: 'mdi:folder' },
         component: () => import('@/views/ThePage.vue'),
       },
+      {
+        path: '/profile',
+        name: 'TheProfile',
+        meta: { label: 'profile', icon: 'mdi:user' },
+        component: () => import('@/views/TheProfile.vue'),
+      }
     ],
   },
   {

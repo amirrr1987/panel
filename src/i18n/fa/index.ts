@@ -47,6 +47,7 @@ export default {
     fullContentExit: 'خروج از تمام محتوا',
     language: 'زبان',
     radius: 'شعاع',
-    panelGuide: 'راهنمای پنل'
+    panelGuide: 'راهنمای پنل',
+    changePassword: 'تغییر رمز عبور',
   },
 }
