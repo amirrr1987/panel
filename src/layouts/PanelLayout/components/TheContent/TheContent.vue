@@ -7,6 +7,7 @@ import { useLoading } from '@/composable/useLoading'
 import { useThemeStore } from '@/stores/theme.store'
 import TheTabbar from '../TheTabbar.vue'
 import { useTabStore } from '@/stores/tab.store'
+import { Icon } from '@iconify/vue'
 const isFullContent = defineModel<boolean>('isFullContent', { required: true })
 const themeStore = useThemeStore()
 const tabStore = useTabStore()
@@ -16,13 +17,20 @@ const { isLoading } = useLoading()
   <LayoutContent>
     <TheTabbar>
       <div>
-        <Tabs type="editable-card" hide-add>
-          <TabPane
-            v-for="tab in tabStore.tabs"
-            :key="tab.key"
-            :tab-key="tab.key"
-            :tab="tab.title"
-          />
+        <Tabs
+          type="editable-card"
+          hide-add
+          v-model:activeKey="tabStore.activeTab"
+          @change="(key) => tabStore.setActiveTab(key as string)"
+        >
+          <TabPane v-for="tab in tabStore.tabs" :key="tab.key" :tab-key="tab.key">
+            <template #tab>
+              <div class="flex items-center gap-2">
+                <Icon :icon="tab.icon" />
+                {{ tab.title }}
+              </div>
+            </template>
+          </TabPane>
         </Tabs>
       </div>
       <div>

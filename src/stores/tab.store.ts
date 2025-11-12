@@ -2,18 +2,44 @@
 import { defineStore } from 'pinia'
 import type { RouteLocationNormalized } from 'vue-router'
 import { useStorage } from '@vueuse/core'
-
+import { computed } from 'vue'
+import type { Ref } from 'vue'
+import { useRoute } from 'vue-router'
+import router from '@/router'
 export const useTabStore = defineStore('tabs', () => {
   type Tab = { key: string; title: string; icon: string; closable: boolean }
-
+  
   const tabs = useStorage<Tab[]>('tabs', [
     {
-      key: '242434',
-      title: '242434',
-      icon: '242434',
+      key: 'TheDashboard',
+      title: 'Home',
+      icon: 'mdi:home',
+      closable: true,
+    },
+    {
+      key: 'ThePage',
+      title: 'Page',
+      icon: 'mdi:folder',
+      closable: true,
+    },
+    {
+      key: 'TheProfile',
+      title: 'Profile',
+      icon: 'mdi:user',
+      closable: true,
+    },
+    {
+      key: 'UsersList',
+      title: 'Users',
+      icon: 'mdi:users',
       closable: true,
     },
   ])
+  
+  const route = useRoute()
+  const activeTab = computed(() => {
+    return tabs.value.find((t) => t.key === route.name)?.key
+  }) as Ref<string>
 
   const addTab = (route: RouteLocationNormalized) => {
     if (!tabs.value.find((t) => t.key === (route.name as string))) {
@@ -28,31 +54,12 @@ export const useTabStore = defineStore('tabs', () => {
   }
 
   const removeTab = (key: string) => {
-    // const idx = tabs.value.findIndex((t) => t.key === key)
-    // if (idx === -1) return { nextKey: undefined }
-    // const removed = tabs.value[idx]
-    // if (!removed?.closable) return { nextKey: undefined }
-    // tabs.value.splice(idx, 1)
-    // const left = tabs.value[idx - 1]
-    // const right = tabs.value[idx]
-    // const root = tabs.value.find((t) => t.closable === false)
-    // const next = left ?? right ?? root
-    // if (tabs.value.length === 1) {
-    //   tabs.value.map((t) => {
-    //     t.closable = false
-    //   })
-    //   return { nextKey: undefined }
-    // } else {
-    //   tabs.value.map((t) => {
-    //     t.closable = true
-    //   })
-    // }
-    // return { nextKey: next?.key }
+    tabs.value = tabs.value.filter((t) => t.key !== key)
   }
 
-  const resetTabs = () => {
-    tabs.value = []
+  const setActiveTab = (key: string) => {
+    router.push({ name: key })
   }
 
-  return { tabs, addTab, removeTab, resetTabs }
+  return { tabs, addTab, removeTab, setActiveTab, activeTab }
 })

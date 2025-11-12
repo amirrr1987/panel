@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import routes from '../config/routes.config'
 import { start, done, configure } from 'nprogress'
 import { useLoading } from '@/composable/useLoading'
+import { useTabStore } from '@/stores/tab.store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,6 +25,9 @@ router.beforeEach((to, from, next) => {
     next({ name: 'TheLogin' })
     return
   }
+  const tabStore = useTabStore()
+  console.log('🚀 ~ to:', to)
+  tabStore.addTab(to)
   next()
 })
 let doneTimeout: number | null = null
