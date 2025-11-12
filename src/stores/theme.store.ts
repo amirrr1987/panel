@@ -15,7 +15,7 @@ export const useThemeStore = defineStore('theme', () => {
   const inherit = useStorage('inherit', false)
   const language = useStorage<'fa' | 'en'>('language', 'fa')
   const componentSize = useStorage<SizeType>('componentSize', 'middle')
-  const direction = useStorage<'ltr' | 'rtl'>('direction', 'ltr')
+  const direction = useStorage<'ltr' | 'rtl'>('direction', 'rtl')
   const transition = useStorage<string>('transition', 'fade')
   const token = useStorage<Partial<AliasToken>>('token', {
     colorPrimary: '#1890ff',

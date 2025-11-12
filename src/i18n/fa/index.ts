@@ -49,5 +49,8 @@ export default {
     radius: 'شعاع',
     panelGuide: 'راهنمای پنل',
     changePassword: 'تغییر رمز عبور',
+    id: 'شناسه',
+    roles: 'نقش‌ها',
+    claims: 'دسترسی‌ها',
   },
 }

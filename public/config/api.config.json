@@ -10,7 +10,13 @@
   },
   "Users": {
     "V1": {
-      "CreateUser": "Users/CreateUser"
+      "CreateUser": "Users/CreateUser",
+      "GetAllUsers": "Users/GetAllUsers"
+    }
+  },
+  "Roles": {
+    "V1": {
+      "GetRoles": "Roles/GetRoles"
     }
   }
 }

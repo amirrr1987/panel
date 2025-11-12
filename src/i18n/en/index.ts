@@ -49,5 +49,8 @@ export default {
     radius: 'Radius',
     panelGuide: 'Panel guide',
     changePassword: 'Change Password',
+    id: 'ID',
+    roles: 'Roles',
+    claims: 'Claims',
   },
 };
