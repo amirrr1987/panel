@@ -2,13 +2,13 @@
 import { defineStore } from 'pinia'
 import type { RouteLocationNormalized } from 'vue-router'
 import { useStorage } from '@vueuse/core'
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import type { Ref } from 'vue'
 import { useRoute } from 'vue-router'
 import router from '@/router'
 export const useTabStore = defineStore('tabs', () => {
   type Tab = { key: string; title: string; icon: string; closable: boolean }
-  
+
   const tabs = useStorage<Tab[]>('tabs', [
     {
       key: 'TheDashboard',
@@ -35,7 +35,7 @@ export const useTabStore = defineStore('tabs', () => {
       closable: true,
     },
   ])
-  
+
   const route = useRoute()
   const activeTab = computed(() => {
     return tabs.value.find((t) => t.key === route.name)?.key
@@ -54,7 +54,11 @@ export const useTabStore = defineStore('tabs', () => {
   }
 
   const removeTab = (key: string) => {
-    tabs.value = tabs.value.filter((t) => t.key !== key)
+    if (tabs.value.length === 1) {
+      return
+    } else {
+      tabs.value = tabs.value.filter((t) => t.key !== key)
+    }
   }
 
   const setActiveTab = (key: string) => {

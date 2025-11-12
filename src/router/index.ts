@@ -26,7 +26,6 @@ router.beforeEach((to, from, next) => {
     return
   }
   const tabStore = useTabStore()
-  console.log('🚀 ~ to:', to)
   tabStore.addTab(to)
   next()
 })

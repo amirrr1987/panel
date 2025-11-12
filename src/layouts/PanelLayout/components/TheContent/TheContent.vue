@@ -22,6 +22,7 @@ const { isLoading } = useLoading()
           hide-add
           v-model:activeKey="tabStore.activeTab"
           @change="(key) => tabStore.setActiveTab(key as string)"
+          @edit="(key) => tabStore.removeTab(key as string)"
         >
           <TabPane v-for="tab in tabStore.tabs" :key="tab.key" :tab-key="tab.key">
             <template #tab>
