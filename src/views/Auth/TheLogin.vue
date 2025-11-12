@@ -67,6 +67,9 @@ const showPassword = ref(false)
 const loginData = ref<ILoginRequest>({
   username: 'fw.super.admin1404@gmail.com',
   password: '@FremeWork#1404',
+  grant_type: '',
+  client_id: '',
+  client_secret: '',
 })
 const onLogin = async () => {
   try {
