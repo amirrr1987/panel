@@ -17,7 +17,7 @@ export const useThemeStore = defineStore('theme', () => {
   const language = useStorage<'fa' | 'en'>('language', 'fa')
   const componentSize = useStorage<SizeType>('componentSize', 'middle')
   const direction = useStorage<'ltr' | 'rtl'>('direction', 'ltr')
-  const transition = useStorage<string>('transition', 'bounce')
+  const transition = useStorage<string>('transition', 'fade')
   const token = useStorage<Partial<AliasToken>>('token', {
     colorPrimary: '#1890ff',
     fontFamily: 'Poppins, Vazirmatn, sans-serif',

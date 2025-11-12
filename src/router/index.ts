@@ -16,6 +16,14 @@ const { setLoading } = useLoading()
 router.beforeEach((to, from, next) => {
   start()
   setLoading(true)
+  if (to.name === 'TheLogin' || to.name === 'TheRegister') {
+    next()
+    return
+  }
+  if (!localStorage.getItem('token')) {
+    next({ name: 'TheLogin' })
+    return
+  }
   next()
 })
 let doneTimeout: number | null = null
@@ -24,6 +32,6 @@ router.afterEach(() => {
   doneTimeout = window.setTimeout(() => {
     done()
     setLoading(false)
-  }, 200)
+  }, 400)
 })
 export default router

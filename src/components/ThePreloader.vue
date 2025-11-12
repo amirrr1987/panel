@@ -1,6 +1,6 @@
 <template>
   <div
-    class="backdrop-blur-sm absolute top-0 start-0 size-full flex justify-center items-center z-50"
+    class="backdrop-blur-xs absolute top-0 start-0 size-full flex justify-center items-center z-50"
   >
     <Spin />
   </div>

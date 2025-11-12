@@ -1,11 +1,6 @@
-import { useStorage } from '@vueuse/core'
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
-import { createVNode } from 'vue'
+import { ref } from 'vue'
 import type { TourProps } from 'ant-design-vue'
-import { useThemeStore } from './theme.store'
-
-const themeStore = useThemeStore()
 
 export const useTourStore = defineStore('tour', () => {
   const open = ref<boolean>(false)
@@ -15,7 +10,7 @@ export const useTourStore = defineStore('tour', () => {
   const contentRef = ref<HTMLElement | undefined>(undefined)
   const footerRef = ref<HTMLElement | undefined>(undefined)
   const settingsRef = ref<HTMLElement | undefined>(undefined)
-  const current = ref(3)
+  const current = ref(0)
 
   const steps: TourProps['steps'] = [
     {
@@ -67,13 +62,14 @@ export const useTourStore = defineStore('tour', () => {
         | (() => HTMLElement)
         | (() => null)
         | undefined,
+      placement: 'center',
     },
   ]
 
   const handleOpen = (val: boolean): void => {
     open.value = val
   }
-  const onFinish = ()=>{
+  const onFinish = () => {
     handleOpen(false)
     current.value = 0
   }

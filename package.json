@@ -20,6 +20,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
     "@tailwindcss/vite": "^4.1.16",
     "@vueuse/core": "^14.0.0",
     "@vueuse/head": "^2.0.0",

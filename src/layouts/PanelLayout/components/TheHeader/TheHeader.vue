@@ -1,16 +1,38 @@
 <script setup lang="ts">
-import TheButtonIcon from '@/components/TheButtonIcon.vue'
 import { useThemeStore } from '@/stores/theme.store'
 import { useFullscreen } from '@vueuse/core'
-import { Button, Drawer, LayoutHeader, Tooltip } from 'ant-design-vue/es'
-import { computed, ref, watch, nextTick } from 'vue'
+import {
+  Button,
+  Divider,
+  Drawer,
+  Dropdown,
+  LayoutHeader,
+  Menu,
+  MenuDivider,
+  MenuItem,
+  Tooltip,
+} from 'ant-design-vue/es'
+import { nextTick, computed, ref, watch } from 'vue'
 import TheSettings from './components/TheSettings.vue'
 import { useTourStore } from '@/stores/tour.store'
 import { getElement } from '@/utils'
+import { useTranslation } from 'i18next-vue'
+import {
+  UserOutlined,
+  HistoryOutlined,
+  LogoutOutlined,
+  FullscreenOutlined,
+  FullscreenExitOutlined,
+  SettingOutlined,
+  InfoCircleOutlined,
+} from '@ant-design/icons-vue'
+import { useAuthStore } from '@/stores/auth.store'
+const { t } = useTranslation()
+
 const open = ref(false)
 const tourStore = useTourStore()
 const themeStore = useThemeStore()
-
+const authStore = useAuthStore()
 const placement = computed(() => {
   return themeStore.direction === 'rtl' ? 'left' : 'right'
 })
@@ -46,36 +68,84 @@ watch(
     <div></div>
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <Tooltip :title="$t('panelGuide')">
-          <Button type="text" class="text-primary!" @click="tourStore.open = false">راهنمای پنل</Button>
-        </Tooltip>
+        <Dropdown>
+          <Button type="text" class="text-primary! flex! items-center justify-center">
+            <template #icon>
+              <UserOutlined />
+            </template>
+          </Button>
+          <template #overlay>
+            <Menu>
+              <MenuItem>
+                <template #icon>
+                  <UserOutlined />
+                </template>
+                {{ t('profile') }}
+              </MenuItem>
+              <MenuItem>
+                <template #icon>
+                  <HistoryOutlined />
+                </template>
+                {{ t('history') }}
+              </MenuItem>
+              <MenuDivider />
+              <MenuItem danger @click="authStore.logout()">
+                <template #icon>
+                  <LogoutOutlined />
+                </template>
+                {{ t('logout') }}
+              </MenuItem>
+            </Menu>
+          </template>
+        </Dropdown>
+        <Divider type="vertical" />
 
-        <Tooltip :title="isFullscreen ? $t('fullScreenExit') : $t('fullscreen')">
-          <TheButtonIcon
-            class="bg-red-500"
-            :icon="{
-              icon: isFullscreen ? 'mdi:fullscreen-exit' : 'mdi:fullscreen',
-              class: 'text-primary text-base',
-            }"
+        <Tooltip :title="isFullscreen ? t('fullScreenExit') : t('fullscreen')">
+          <Button
+            type="text"
+            class="text-primary! flex! items-center justify-center"
             @click="toggle"
-          />
+          >
+            <template #icon>
+              <FullscreenOutlined v-if="!isFullscreen" />
+              <FullscreenExitOutlined v-else />
+            </template>
+          </Button>
         </Tooltip>
 
-        <Tooltip :title="$t('settings')">
-          <TheButtonIcon
-            class="bg-red-500"
-            :icon="{ icon: 'mdi:cog', class: 'text-primary text-base' }"
+        <Divider type="vertical" />
+
+        <Tooltip :title="t('settings')">
+          <Button
+            type="text"
+            class="text-primary! flex! items-center justify-center"
             @click="open = true"
-          />
+          >
+            <template #icon>
+              <SettingOutlined />
+            </template>
+          </Button>
         </Tooltip>
         <Drawer
           v-model:open="open"
-          :title="$t('settings')"
+          :title="t('settings')"
           :placement="placement"
           :ref="(el) => (tourStore.settingsRef = getElement(el) || undefined)"
         >
           <TheSettings />
         </Drawer>
+        <Divider type="vertical" />
+        <Tooltip :title="t('panelGuide')">
+          <Button
+            type="text"
+            class="text-primary! flex! items-center justify-center"
+            @click="tourStore.open = true"
+          >
+            <template #icon>
+              <InfoCircleOutlined />
+            </template>
+          </Button>
+        </Tooltip>
       </div>
     </div>
   </LayoutHeader>

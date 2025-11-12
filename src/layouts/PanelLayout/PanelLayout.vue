@@ -32,6 +32,7 @@ const { t } = useTranslation()
         :ref="(el) => (tourStore.siderRef = getElement(el) || undefined)"
       />
       <Layout>
+        
         <TheContent
           v-model:isFullContent="isFullContent"
           :ref="(el) => (tourStore.contentRef = getElement(el) || undefined)"

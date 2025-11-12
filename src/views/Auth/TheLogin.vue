@@ -40,6 +40,8 @@ import { useAuthStore } from '@/stores/auth.store'
 import type { LoginRequestBody } from '@/interfaces/auth.interface'
 import { Icon } from '@iconify/vue'
 import { useThemeStore } from '@/stores/theme.store'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 const authStore = useAuthStore()
 const themeStore = useThemeStore()
 const loading = ref(false)
@@ -55,6 +57,7 @@ const onLogin = async () => {
     loading.value = true
     await authStore.login(loginData.value)
     console.log(authStore.loginData)
+    router.push('/')
     loading.value = false
   } catch (error) {
     loading.value = false
