@@ -21,7 +21,7 @@ export const useThemeStore = defineStore('theme', () => {
     colorPrimary: '#1890ff',
     fontFamily: 'Poppins, Vazirmatn, sans-serif',
     borderRadius: 6,
-    fontSize: 14,
+    fontSize: 16,
   })
   const { token: antToken } = antTheme.useToken()
   const components = reactive<Partial<OverrideToken>>({

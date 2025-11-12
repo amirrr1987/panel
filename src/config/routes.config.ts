@@ -23,7 +23,13 @@ const routes: RouteRecordRaw[] = [
         name: 'TheProfile',
         meta: { label: 'profile', icon: 'mdi:user' },
         component: () => import('@/views/TheProfile.vue'),
-      }
+      },
+      {
+        path: '/users',
+        name: 'UsersList',
+        meta: { label: 'users', icon: 'mdi:users' },
+        component: () => import('@/views/Users/List.vue'),
+      },
     ],
   },
   {

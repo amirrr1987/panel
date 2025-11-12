@@ -12,13 +12,22 @@
         </Tooltip>
       </RadioGroup>
     </FormItem>
+    <FormItem :label="$t('fontSize')" name="fontSize">
+      <InputNumber
+        v-model:value="themeStore.token.fontSize"
+        :min="10"
+        :max="24"
+        :step="2"
+        :default-value="16"
+      />
+    </FormItem>
     <FormItem :label="$t('radius')" name="borderRadius">
       <InputNumber
         v-model:value="themeStore.token.borderRadius"
         :min="0"
         :max="18"
         :step="2"
-        default-value="6"
+        :default-value="6"
       />
     </FormItem>
     <FormItem :label="$t('theme')" name="isDark">
@@ -142,6 +151,7 @@
         <RadioButton
           value="fa"
           class="inline-flex! items-center justify-center hover:bg-primary! hover:text-white!"
+          :class="{ 'bg-primary! text-white!': themeStore.language === 'fa' }"
         >
           <Icon
             icon="emojione-v1:flag-for-iran"
@@ -151,6 +161,7 @@
         <RadioButton
           value="en"
           class="inline-flex! items-center justify-center hover:bg-primary! hover:text-white!"
+          :class="{ 'bg-primary! text-white!': themeStore.language === 'en' }"
         >
           <Icon
             icon="emojione-v1:flag-for-united-states"

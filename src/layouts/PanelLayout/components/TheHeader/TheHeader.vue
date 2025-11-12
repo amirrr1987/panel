@@ -69,6 +69,10 @@ watch(
     <div></div>
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
+        <Button
+          class="inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 h-8 w-8 px-1 text-lg hover:bg-accent hover:text-accent-foreground text-foreground/80 is-dark theme-toggle cursor-pointer border-none bg-none hover:animate-[shrink_0.3s_ease-in-out] rounded-full"
+        >
+        </Button>
         <Dropdown>
           <Button type="text" class="text-primary! flex! items-center justify-center">
             <template #icon>
