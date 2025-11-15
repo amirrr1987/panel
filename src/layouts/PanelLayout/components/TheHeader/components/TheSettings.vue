@@ -26,7 +26,7 @@
         v-model:value="themeStore.token.borderRadius"
         :min="0"
         :max="18"
-        :step="2"
+        :step="3"
         :default-value="6"
       />
     </FormItem>
@@ -189,20 +189,25 @@
         </Tooltip>
       </RadioGroup>
     </FormItem>
+    <FormItem :label="$t('reset')" name="reset">
+      <Button type="primary" @click="themeStore.reset">{{ $t('reset') }}</Button>
+    </FormItem>
   </Form>
 </template>
 <script setup lang="ts">
 import { colors } from '@/config/color.config'
 import { useThemeStore } from '@/stores/theme.store'
 import { Icon } from '@iconify/vue'
-import { Form, FormItem, InputNumber, RadioButton, RadioGroup, Tooltip } from 'ant-design-vue/es'
+import {
+  Form,
+  FormItem,
+  InputNumber,
+  RadioButton,
+  RadioGroup,
+  Tooltip,
+  Button,
+} from 'ant-design-vue/es'
+import { transitions } from '@/config/transition.config'
 const themeStore = useThemeStore()
-
-const transitions = [
-  { key: 'slide-x', name: 'slide-x', icon: 'mdi:arrow-right' },
-  { key: 'slide-y', name: 'slide-y', icon: 'mdi:arrow-down' },
-  { key: 'fade', name: 'fade', icon: 'mdi:opacity' },
-  { key: 'random', name: 'random', icon: 'mdi:shuffle' },
-]
 </script>
 <style lang="less"></style>

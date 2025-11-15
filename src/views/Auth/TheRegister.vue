@@ -91,8 +91,7 @@ const onRegister = async () => {
   try {
     loading.value = true
     await authStore.register(omit(registerData.value, 'confirmPassword'))
-    console.log(authStore.user)
-    router.push({ name: 'TheLogin' })
+    authStore.logout()
     loading.value = false
   } catch (error) {
     loading.value = false

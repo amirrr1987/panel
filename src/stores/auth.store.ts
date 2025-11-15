@@ -3,6 +3,7 @@ import type { ICreateUserActiveDirectoryRequest, ICreateUserActiveDirectoryRespo
 import router from '@/router'
 import { useAuthService } from '@/services/auth.service'
 import { useStorage } from '@vueuse/core'
+import { jwtDecode } from 'jwt-decode'
 import { defineStore } from 'pinia'
 
 export const useAuthStore = defineStore('auth', () => {
@@ -26,7 +27,17 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = {} as ICreateUserActiveDirectoryResponse
     loginData.value = {} as ILoginResponse
     localStorage.removeItem('token')
-    router.push('/login')
+    router.push({ name: 'TheLogin' })
   }
-  return { user, loginData, login, register, logout }
+
+  const isExpired = () => {
+    if (loginData.value.access_token) {
+      const decodedToken = jwtDecode(loginData.value.access_token)
+      if (decodedToken.exp && typeof decodedToken.exp === 'number' && decodedToken.exp < Date.now() / 1000) {
+        return true
+      }
+    }
+    return false
+  }
+  return { user, loginData, login, register, logout, isExpired }
 })

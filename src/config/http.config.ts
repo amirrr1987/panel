@@ -12,8 +12,7 @@ export function initHttpClient(): AxiosInstance {
     return httpInstance
   }
   const loginData = JSON.parse(localStorage.getItem('loginData') ?? '{}')
-
-  console.log(loginData.access_token)
+  const accessToken = loginData.access_token
 
   const apiConfig = getApiConfig()
   httpInstance = axios.create({
@@ -22,7 +21,7 @@ export function initHttpClient(): AxiosInstance {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: `Bearer ${loginData.access_token}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   })
 

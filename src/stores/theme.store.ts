@@ -18,10 +18,10 @@ export const useThemeStore = defineStore('theme', () => {
   const direction = useStorage<'ltr' | 'rtl'>('direction', 'rtl')
   const transition = useStorage<string>('transition', 'fade')
   const token = useStorage<Partial<AliasToken>>('token', {
-    colorPrimary: '#1890ff',
+    colorPrimary: '#1677ff',
     fontFamily: 'Poppins, Vazirmatn, sans-serif',
     borderRadius: 6,
-    fontSize: 16,
+    fontSize: 14,
   })
   const { token: antToken } = antTheme.useToken()
   const components = reactive<Partial<OverrideToken>>({
@@ -30,7 +30,7 @@ export const useThemeStore = defineStore('theme', () => {
         return antToken.value.colorBgContainer
       },
       get colorBgTrigger() {
-        return token.value.colorPrimary || '#1890ff'
+        return token.value.colorPrimary || '#1677ff'
       },
     },
   })
@@ -112,6 +112,21 @@ export const useThemeStore = defineStore('theme', () => {
     },
     { immediate: true },
   )
+  const reset = () => {
+    isDark.value = false
+    isCompact.value = false
+    hashed.value = false
+    inherit.value = false
+    componentSize.value = 'middle'
+    direction.value = 'rtl'
+    language.value = 'fa'
+    token.value = {
+      colorPrimary: '#1890ff',
+      fontFamily: 'Poppins, Vazirmatn, sans-serif',
+      borderRadius: 6,
+      fontSize: 16,
+    }
+  }
 
   return {
     token,
@@ -126,5 +141,6 @@ export const useThemeStore = defineStore('theme', () => {
     algorithm,
     components,
     spacing,
+    reset,
   }
 })
