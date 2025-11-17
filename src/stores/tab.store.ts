@@ -14,7 +14,7 @@ export const useTabStore = defineStore('tabs', () => {
     if (tabs.value.length === 1) {
       return tabs.value.map((tab) => ({ ...tab, closable: false }))
     } else {
-      return tabs.value
+      return tabs.value.map((tab) => ({ ...tab, closable: true }))
     }
   })
   const route = useRoute()

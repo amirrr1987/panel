@@ -1,8 +1,7 @@
 @import 'tailwindcss';
 @variant dark (&:where(.dark *));
 @theme {
-  --color-primary: #1890ff;
-  --color-primary-oklch: oklch(71.5% 0.143 215.221);
+  --color-primary: oklch(0.5987 0.2193 259.04);
   --font-family: 'Poppins, Vazirmatn, sans-serif';
   --radius-base: 0.375rem;
   --radius-xs: calc(var(--border-radius) * 0.5);

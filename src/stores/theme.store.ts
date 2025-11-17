@@ -59,7 +59,8 @@ export const useThemeStore = defineStore('theme', () => {
   watch(
     () => language.value,
     (language) => {
-      i18n.changeLanguage(language)
+      // i18n.changeLanguage(language)
+      i18n.language = language
       document.documentElement.setAttribute('lang', language)
       document.documentElement.style.setProperty(
         '--font-family',

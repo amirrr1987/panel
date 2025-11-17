@@ -5,6 +5,7 @@ import TheContent from './components/TheContent/TheContent.vue'
 import TheFooter from './components/TheFooter/TheFooter.vue'
 import TheHeader from './components/TheHeader/TheHeader.vue'
 import TheSider from './components/TheSider/TheSider.vue'
+import TheTabbar from './TheTabbar/TheTabbar.vue'
 import { useTourStore } from '@/stores/tour.store'
 import { useTranslation } from 'i18next-vue'
 import { getElement } from '@/utils'
@@ -32,7 +33,7 @@ const { t } = useTranslation()
         :ref="(el) => (tourStore.siderRef = getElement(el) || undefined)"
       />
       <Layout>
-        
+        <TheTabbar v-model:isFullContent="isFullContent" />
         <TheContent
           v-model:isFullContent="isFullContent"
           :ref="(el) => (tourStore.contentRef = getElement(el) || undefined)"
