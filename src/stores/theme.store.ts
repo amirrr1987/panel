@@ -30,8 +30,16 @@ export const useThemeStore = defineStore('theme', () => {
         return antToken.value.colorBgContainer
       },
       get colorBgTrigger() {
-        return token.value.colorPrimary || '#1677ff'
+        return token.value.colorPrimary
       },
+      // get colorBgLayout() {
+      //   return antToken.value.colorBgContainer
+      // },
+    },
+    Tabs: {
+      // get colorBgContainer() {
+      //   return antToken.value.colorBgContainer
+      // },
     },
   })
 

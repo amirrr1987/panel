@@ -10,7 +10,7 @@ const { t } = useTranslation()
 </script>
 
 <template>
-  <section class="flex items-center px-4 bg-gray-0 pt-2" style="background: #f4f4f4 !important">
+  <section class="flex items-center px-4 bg-gray-0 pt-2">
     <Tabs
       type="editable-card"
       hide-add
@@ -47,15 +47,4 @@ const { t } = useTranslation()
     </div>
   </section>
 </template>
-<style lang="less">
-.ant-layout {
-  background: #f1f1f1 !important;
-}
-.ant-tabs-tab {
-  background-color: #f9f9f9 !important;
-}
-.ant-tabs-tab-active {
-  background-color: #f1f1f1 !important;
-  border-bottom-color: #f1f1f1 !important;
-}
-</style>
+<style lang="less"></style>
