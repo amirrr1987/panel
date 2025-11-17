@@ -11,6 +11,7 @@ const router = createRouter({
 })
 configure({
   easing: 'easeInOut',
+  showSpinner: false,
 })
 
 const { setLoading } = useLoading()
