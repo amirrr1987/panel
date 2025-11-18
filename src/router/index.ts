@@ -20,16 +20,16 @@ router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
 
   // Allow access to login and register pages without authentication checks
-  if (to.name === 'TheLogin' || to.name === 'TheRegister') {
-    next()
-    return
-  }
+  // if (to.name === 'TheLogin' || to.name === 'TheRegister') {
+  //   next()
+  //   return
+  // }
 
   // Check if token is expired (only for protected routes)
-  if (!authStore.loginData.access_token || authStore.isExpired()) {
-    next({ name: 'TheLogin' })
-    return
-  }
+  // if (!authStore.loginData.access_token || authStore.isExpired()) {
+  //   next({ name: 'TheLogin' })
+  //   return
+  // }
 
   // User is authenticated, proceed with navigation
   start()
