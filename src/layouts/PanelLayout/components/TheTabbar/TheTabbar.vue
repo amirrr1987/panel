@@ -4,20 +4,35 @@ import { Tooltip, Divider, Tabs, TabPane } from 'ant-design-vue/es'
 import { useTranslation } from 'i18next-vue'
 import { useTabStore } from '@/stores/tab.store'
 import { Icon } from '@iconify/vue'
+import { useWindowSize } from '@vueuse/core'
 const isFullContent = defineModel<boolean>('isFullContent', { required: true })
 const tabStore = useTabStore()
 const { t } = useTranslation()
+
+const props = withDefaults(
+  defineProps<{
+    collapsed: boolean
+  }>(),
+  {
+    collapsed: false,
+  },
+)
+const { width } = useWindowSize()
 </script>
 
 <template>
-  <section class="px-4 bg-gray-0 pt-2 flex items-center justify-between">
+  <section
+    class="px-4 bg-gray-0 pt-2 flex items-center justify-between"
+    :class="{ 'overflow-x-scroll': !props.collapsed && width < 768 }"
+  >
     <Tabs
       type="editable-card"
       hide-add
       v-model:activeKey="tabStore.activeTab"
       @change="(key) => tabStore.setActiveTab(key as string)"
       @edit="(key) => tabStore.removeTab(key as string)"
-      class="max-w-40 md:max-w-none md:flex-1"
+      class="md:max-w-none md:flex-1"
+      :class="{ 'max-w-50': props.collapsed && width > 768 }"
     >
       <TabPane
         v-for="tab in tabStore.computedTabs"
@@ -26,10 +41,12 @@ const { t } = useTranslation()
         :closable="tab.closable"
       >
         <template #tab>
-          <div class="flex items-center justify-center gap-2">
-            <Icon :icon="tab.icon" />
-            {{ tab.title }}
-          </div>
+          <Tooltip :title="t(tab.title)">
+            <div class="flex items-center justify-center gap-2">
+              <Icon :icon="tab.icon" />
+              <template v-if="width > 768 && !props.collapsed">{{ t(tab.title) }}</template>
+            </div>
+          </Tooltip>
         </template>
       </TabPane>
     </Tabs>

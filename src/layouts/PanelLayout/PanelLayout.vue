@@ -6,12 +6,11 @@ import TheHeader from './components/TheHeader/TheHeader.vue'
 import TheSider from './components/TheSider/TheSider.vue'
 import TheTabbar from './components/TheTabbar/TheTabbar.vue'
 import { useTourStore } from '@/stores/tour.store'
-import { useTranslation } from 'i18next-vue'
 import { getElement } from '@/utils'
 
 const isFullContent = ref(false)
 const tourStore = useTourStore()
-const { t } = useTranslation()
+const collapsed = ref(false)
 </script>
 
 <template>
@@ -29,11 +28,12 @@ const { t } = useTranslation()
     />
     <Layout>
       <TheSider
+        v-model:collapsed="collapsed"
         :class="['app-sider', { collapsed: isFullContent }]"
         :ref="(el) => (tourStore.siderRef = getElement(el) || undefined)"
       />
       <Layout>
-        <TheTabbar v-model:isFullContent="isFullContent" />
+        <TheTabbar v-model:isFullContent="isFullContent" :collapsed="collapsed" />
         <TheContent
           v-model:isFullContent="isFullContent"
           :ref="(el) => (tourStore.contentRef = getElement(el) || undefined)"
