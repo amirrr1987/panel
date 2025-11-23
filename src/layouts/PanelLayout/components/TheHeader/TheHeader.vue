@@ -80,7 +80,9 @@ const { width } = useWindowSize()
     </div>
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <Tag color="green"> {{ t('version') }} {{ version }} </Tag>
+        <Tag class="text-primary! border-primary/40! bg-primary/5!">
+          {{ t('version') }} {{ version }}
+        </Tag>
         <Dropdown>
           <Button type="text" class="text-primary! flex! items-center justify-center">
             <template #icon>
