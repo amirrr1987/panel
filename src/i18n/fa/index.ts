@@ -1,5 +1,6 @@
 export default {
   translation: {
+    'app.name': 'بانک کشاورزی',
     inquiryhub: 'استعلام',
     settings: 'تنظیمات',
     userManagement: 'مدیریت کاربران',
@@ -52,5 +53,9 @@ export default {
     id: 'شناسه',
     roles: 'نقش‌ها',
     claims: 'دسترسی‌ها',
+    "notFound.title": "یافت نشد",
+    "notFound.description": "صفحه مورد نظر شما وجود ندارد.",
+    "notFound.goHome": "بازگشت به صفحه اصلی",
+    "notFound.goBack": "بازگشت",
   },
 }

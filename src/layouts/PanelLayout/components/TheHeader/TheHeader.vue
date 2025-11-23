@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useThemeStore } from '@/stores/theme.store'
-import { useFullscreen } from '@vueuse/core'
+import { useFullscreen, useWindowSize } from '@vueuse/core'
 import {
   Button,
   Divider,
@@ -10,6 +10,7 @@ import {
   Menu,
   MenuDivider,
   MenuItem,
+  Tag,
   Tooltip,
 } from 'ant-design-vue/es'
 import { nextTick, computed, ref, watch } from 'vue'
@@ -28,6 +29,8 @@ import {
 } from '@ant-design/icons-vue'
 import { useAuthStore } from '@/stores/auth.store'
 import { useRouter } from 'vue-router'
+import TheLogo from '@/components/TheLogo.vue'
+import { version } from '#/package.json'
 
 const { t } = useTranslation()
 const router = useRouter()
@@ -63,15 +66,21 @@ watch(
     }
   },
 )
+
+const { width } = useWindowSize()
 </script>
 
 <template>
-  <LayoutHeader class="flex items-center justify-between px-8!">
+  <LayoutHeader class="flex items-center justify-between ps-5! pe-4!">
     <div>
-      <img src="@/assets/images/logo-3.webp" alt="logo" class="h-12" />
+      <RouterLink to="/" class="flex items-center gap-2">
+        <TheLogo class="h-14 w-min object-contain fill-primary" />
+        <span class="text-base font-bold text-primary" v-if="width > 768">{{ t('app.name') }}</span>
+      </RouterLink>
     </div>
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
+        <Tag color="green"> {{ t('version') }} {{ version }} </Tag>
         <Dropdown>
           <Button type="text" class="text-primary! flex! items-center justify-center">
             <template #icon>

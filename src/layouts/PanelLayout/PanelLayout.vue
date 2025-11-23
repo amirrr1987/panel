@@ -2,13 +2,13 @@
 import { Layout, Tour } from 'ant-design-vue/es'
 import { ref } from 'vue'
 import TheContent from './components/TheContent/TheContent.vue'
-import TheFooter from './components/TheFooter/TheFooter.vue'
 import TheHeader from './components/TheHeader/TheHeader.vue'
 import TheSider from './components/TheSider/TheSider.vue'
 import TheTabbar from './components/TheTabbar/TheTabbar.vue'
 import { useTourStore } from '@/stores/tour.store'
 import { useTranslation } from 'i18next-vue'
 import { getElement } from '@/utils'
+
 const isFullContent = ref(false)
 const tourStore = useTourStore()
 const { t } = useTranslation()
@@ -38,7 +38,6 @@ const { t } = useTranslation()
           v-model:isFullContent="isFullContent"
           :ref="(el) => (tourStore.contentRef = getElement(el) || undefined)"
         />
-        <TheFooter :ref="(el) => (tourStore.footerRef = getElement(el) || undefined)" />
       </Layout>
     </Layout>
   </Layout>
