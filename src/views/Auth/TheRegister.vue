@@ -2,7 +2,7 @@
   <Card class="w-full max-w-md">
     <Form layout="vertical" :model="registerData" @submit="onRegister">
       <FormItem
-        :label="$t('username')"
+        :label="t('username')"
         name="username"
         :rules="[
           { required: true, message: 'Please input your email' },
@@ -16,7 +16,7 @@
         </Input>
       </FormItem>
       <FormItem
-        :label="$t('password')"
+        :label="t('password')"
         name="password"
         :rules="[{ required: true, message: 'Please input your password' }]"
       >
@@ -39,18 +39,18 @@
           :checked="registerData.loginProvider === LoginProviderConstant.ACTIVE_DIRECTORY"
           @change="onLoginProviderChange"
         >
-          {{ $t('activeDirectory') }}
+          {{ t('activeDirectory') }}
         </Checkbox>
       </FormItem>
       <FormItem>
         <Button type="primary" html-type="submit" :loading="loading" block>
-          {{ $t('register') }}
+          {{ t('register') }}
         </Button>
       </FormItem>
     </Form>
     <Divider />
     <Button type="link" block @click="router.push({ name: 'TheLogin' })">
-      {{ $t('login') }}
+      {{ t('login') }}
     </Button>
   </Card>
 </template>

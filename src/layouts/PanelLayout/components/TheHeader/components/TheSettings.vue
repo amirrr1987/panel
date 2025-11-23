@@ -1,6 +1,6 @@
 <template>
   <Form layout="vertical" class="settings">
-    <FormItem :label="$t('colorPrimary')" name="colorPrimary">
+    <FormItem :label="t('colorPrimary')" name="colorPrimary">
       <RadioGroup v-model:value="themeStore.token.colorPrimary">
         <Tooltip v-for="(color, key) in colors" :key="color.oklch" :title="key">
           <RadioButton
@@ -12,7 +12,7 @@
         </Tooltip>
       </RadioGroup>
     </FormItem>
-    <FormItem :label="$t('fontSize')" name="fontSize">
+    <FormItem :label="t('fontSize')" name="fontSize">
       <InputNumber
         v-model:value="themeStore.token.fontSize"
         :min="10"
@@ -21,7 +21,7 @@
         :default-value="16"
       />
     </FormItem>
-    <FormItem :label="$t('radius')" name="borderRadius">
+    <FormItem :label="t('radius')" name="borderRadius">
       <InputNumber
         v-model:value="themeStore.token.borderRadius"
         :min="0"
@@ -30,9 +30,9 @@
         :default-value="6"
       />
     </FormItem>
-    <FormItem :label="$t('theme')" name="isDark">
+    <FormItem :label="t('theme')" name="isDark">
       <RadioGroup v-model:value="themeStore.isDark">
-        <Tooltip :title="$t('dark')">
+        <Tooltip :title="t('dark')">
           <RadioButton
             :value="true"
             class="inline-flex! items-center justify-center hover:bg-primary! hover:text-white!"
@@ -43,7 +43,7 @@
             />
           </RadioButton>
         </Tooltip>
-        <Tooltip :title="$t('light')">
+        <Tooltip :title="t('light')">
           <RadioButton
             :value="false"
             class="inline-flex! items-center justify-center hover:bg-primary! hover:text-white!"
@@ -56,9 +56,9 @@
         </Tooltip>
       </RadioGroup>
     </FormItem>
-    <FormItem :label="$t('isCompact')" name="isCompact">
+    <FormItem :label="t('isCompact')" name="isCompact">
       <RadioGroup v-model:value="themeStore.isCompact">
-        <Tooltip :title="$t('compact')">
+        <Tooltip :title="t('compact')">
           <RadioButton
             :value="true"
             class="inline-flex! items-center justify-center hover:bg-primary! hover:text-white!"
@@ -69,7 +69,7 @@
             />
           </RadioButton>
         </Tooltip>
-        <Tooltip :title="$t('default')">
+        <Tooltip :title="t('default')">
           <RadioButton
             :value="false"
             class="inline-flex! items-center justify-center hover:bg-primary! hover:text-white!"
@@ -82,9 +82,9 @@
         </Tooltip>
       </RadioGroup>
     </FormItem>
-    <FormItem :label="$t('compactSize')" name="componentSize">
+    <FormItem :label="t('compactSize')" name="componentSize">
       <RadioGroup v-model:value="themeStore.componentSize">
-        <Tooltip :title="$t('small')">
+        <Tooltip :title="t('small')">
           <RadioButton
             value="small"
             class="inline-flex! items-center justify-center hover:bg-primary! hover:text-white!"
@@ -95,7 +95,7 @@
             />
           </RadioButton>
         </Tooltip>
-        <Tooltip :title="$t('middle')">
+        <Tooltip :title="t('middle')">
           <RadioButton
             value="middle"
             class="inline-flex! items-center justify-center hover:bg-primary! hover:text-white!"
@@ -106,7 +106,7 @@
             />
           </RadioButton>
         </Tooltip>
-        <Tooltip :title="$t('large')">
+        <Tooltip :title="t('large')">
           <RadioButton
             value="large"
             class="inline-flex! items-center justify-center hover:bg-primary! hover:text-white!"
@@ -119,9 +119,9 @@
         </Tooltip>
       </RadioGroup>
     </FormItem>
-    <FormItem :label="$t('direction')" name="direction">
+    <FormItem :label="t('direction')" name="direction">
       <RadioGroup v-model:value="themeStore.direction">
-        <Tooltip :title="$t('ltr')">
+        <Tooltip :title="t('ltr')">
           <RadioButton
             value="ltr"
             class="inline-flex! items-center justify-center hover:bg-primary! hover:text-white!"
@@ -132,7 +132,7 @@
             />
           </RadioButton>
         </Tooltip>
-        <Tooltip :title="$t('rtl')">
+        <Tooltip :title="t('rtl')">
           <RadioButton
             value="rtl"
             class="inline-flex! items-center justify-center hover:bg-primary! hover:text-white!"
@@ -146,7 +146,7 @@
       </RadioGroup>
     </FormItem>
 
-    <FormItem :label="$t('language')" name="language">
+    <FormItem :label="t('language')" name="language">
       <RadioGroup v-model:value="themeStore.language">
         <RadioButton
           value="fa"
@@ -170,7 +170,7 @@
         </RadioButton>
       </RadioGroup>
     </FormItem>
-    <FormItem :label="$t('transition')" name="transition">
+    <FormItem :label="t('transition')" name="transition">
       <RadioGroup v-model:value="themeStore.transition">
         <Tooltip
           v-for="transition in transitions"
@@ -189,8 +189,8 @@
         </Tooltip>
       </RadioGroup>
     </FormItem>
-    <FormItem :label="$t('reset')" name="reset">
-      <Button type="primary" @click="themeStore.reset">{{ $t('reset') }}</Button>
+    <FormItem :label="t('reset')" name="reset">
+      <Button type="primary" @click="themeStore.reset">{{ t('reset') }}</Button>
     </FormItem>
   </Form>
 </template>
@@ -208,6 +208,8 @@ import {
   Button,
 } from 'ant-design-vue/es'
 import { transitions } from '@/config/transition.config'
+import { useTranslation } from 'i18next-vue'
 const themeStore = useThemeStore()
+const { t } = useTranslation()
 </script>
 <style lang="less"></style>
