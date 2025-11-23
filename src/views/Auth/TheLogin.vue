@@ -2,7 +2,7 @@
   <Card class="w-full max-w-md">
     <Form layout="vertical" :model="loginData" @submit="onLogin">
       <FormItem
-        :label="$t('username')"
+        :label="t('username')"
         name="username"
         :rules="[
           { required: true, message: 'Please input your email' },
@@ -16,7 +16,7 @@
         </Input>
       </FormItem>
       <FormItem
-        :label="$t('password')"
+        :label="t('password')"
         name="password"
         :rules="[{ required: true, message: 'Please input your password' }]"
       >
@@ -37,14 +37,14 @@
       <FormItem> </FormItem>
       <FormItem>
         <Button type="primary" html-type="submit" :loading="loading" block>
-          {{ $t('login') }}
+          {{ t('login') }}
         </Button>
       </FormItem>
     </Form>
     <Divider />
 
     <Button type="link" block @click="router.push({ name: 'TheRegister' })">
-      {{ $t('register') }}
+      {{ t('register') }}
     </Button>
   </Card>
 </template>

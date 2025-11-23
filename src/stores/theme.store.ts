@@ -7,6 +7,7 @@ import type { MappingAlgorithm, SizeType } from 'ant-design-vue/es/config-provid
 import { useStorage } from '@vueuse/core'
 import { i18n } from '@/i18n'
 import { colors } from '@/config/color.config'
+import { useTranslation } from 'i18next-vue'
 
 export const useThemeStore = defineStore('theme', () => {
   const isDark = useStorage('isDark', false)
@@ -64,12 +65,12 @@ export const useThemeStore = defineStore('theme', () => {
     return result
   })
 
+  const { i18next } = useTranslation()
   watch(
     () => language.value,
     (language) => {
-      // i18n.changeLanguage(language)
-      i18n.language = language
-      document.documentElement.setAttribute('lang', language)
+      i18next.changeLanguage(language)
+      // document.documentElement.setAttribute('lang', language)
       document.documentElement.style.setProperty(
         '--font-family',
         language === 'fa' ? 'Vazirmatn, Poppins, sans-serif' : 'Poppins, Vazirmatn, sans-serif',
