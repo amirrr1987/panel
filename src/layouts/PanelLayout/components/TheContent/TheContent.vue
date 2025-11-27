@@ -10,7 +10,7 @@ const { isLoading } = useLoading()
 </script>
 <template>
   <LayoutContent>
-    <div class="relative grid h-full overflow-x-hidden overflow-y-auto bg-white">
+    <div class="relative grid h-full overflow-x-hidden overflow-y-auto">
       <div class="p-4">
         <ThePreloader v-if="isLoading" />
         <Transition :name="themeStore.transition">

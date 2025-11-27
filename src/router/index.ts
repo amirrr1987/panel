@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import routes from '../config/routes.config'
+import routes from '@/config/routes.config'
 import { start, done, configure } from 'nprogress'
 import { useLoading } from '@/composable/useLoading'
 import { useTabStore } from '@/stores/tab.store'

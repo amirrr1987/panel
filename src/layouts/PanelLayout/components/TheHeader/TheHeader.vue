@@ -10,7 +10,6 @@ import {
   Menu,
   MenuDivider,
   MenuItem,
-  Tag,
   Tooltip,
 } from 'ant-design-vue/es'
 import { nextTick, computed, ref, watch } from 'vue'
@@ -30,8 +29,7 @@ import {
 import { useAuthStore } from '@/stores/auth.store'
 import { useRouter } from 'vue-router'
 import TheLogo from '@/components/TheLogo.vue'
-import { version } from '#/package.json'
-
+import TheVersion from '@/components/TheVersion.vue'
 const { t } = useTranslation()
 const router = useRouter()
 const open = ref(false)
@@ -80,9 +78,7 @@ const { width } = useWindowSize()
     </div>
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <Tag class="text-primary! border-primary/40! bg-primary/5!">
-          {{ t('version') }} {{ version }}
-        </Tag>
+        <TheVersion />
         <Dropdown>
           <Button type="text" class="text-primary! flex! items-center justify-center">
             <template #icon>
