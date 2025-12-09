@@ -4,9 +4,9 @@ import type { Result } from '@/interfaces/result.interface'
 import type { UserDto } from '@/interfaces/users.interface'
 
 export const useUsersService = () => {
+  const apiConfig = getApiConfig()
+  const http = getHttpClient()
   const getUsers = async (): Promise<Result<UserDto[]>> => {
-    const apiConfig = getApiConfig()
-    const http = getHttpClient()
     const response = await http.get<Result<UserDto[]>>(apiConfig.Users.V1.GetAllUsers)
     return response.data
   }

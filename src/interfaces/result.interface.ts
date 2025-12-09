@@ -1,4 +1,4 @@
-export interface Result<T> {
+export interface IResult<T> {
   isSuccess: boolean
   message: string
   data: T | null

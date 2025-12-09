@@ -1,11 +1,14 @@
 {
-  "baseURL": "http://10.0.85.27:8093/api/",
+  "baseURL": "http://10.0.85.54:2244/api",
   "Auth": {
     "V1": {
       "Login": "v1/Auth/Login",
-      "Register": "v1/Auth/register",
-      "ForgotPassword": "v1/Auth/forgot-password",
-      "ResetPassword": "v1/Auth/reset-password"
+      "RefreshToken": "v1/Auth/RefreshToken",
+      "ValidateToken": "v1/Auth/ValidateToken",
+      "AddClaim": "v1/Auth/AddClaim",
+      "IsAuthorized": "v1/Auth/IsAuthorized",
+      "IsInRole": "v1/Auth/IsInRole",
+      "AddPolicy": "v1/Auth/AddPolicy"
     }
   },
   "Users": {

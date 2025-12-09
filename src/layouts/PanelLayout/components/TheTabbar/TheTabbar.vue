@@ -69,4 +69,19 @@ const { width } = useWindowSize()
   justify-content: space-between;
   display: flex;
 }
+// .ant-tabs {
+//   .ant-tabs-tab {
+//     &::before{
+//       content: '';
+//       display: block;
+//       width:6px;
+//       height: 20px;
+//       border-start-end-radius: 10px;
+//       background-color: red !important;
+//       position: absolute;
+//       bottom: 0;
+//       left: -6px;
+//     }
+//   }
+// }
 </style>

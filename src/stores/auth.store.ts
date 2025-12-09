@@ -9,13 +9,12 @@ import { defineStore } from 'pinia'
 export const useAuthStore = defineStore('auth', () => {
   const authService = useAuthService()
 
-  const user = useStorage<ICreateUserActiveDirectoryResponse>('user', {} as ICreateUserActiveDirectoryResponse)
-  const loginData = useStorage<ILoginResponse>('loginData', {} as ILoginResponse)
+  const authData = useStorage<ILoginResponse>('auth', {} as ILoginResponse)
 
   const login = async (reqBody: ILoginRequest) => {
     const { data, isSuccess } = await authService.login(reqBody)
     if (isSuccess) {
-      loginData.value = data
+      authData.value = data
     }
   }
 
@@ -24,20 +23,19 @@ export const useAuthStore = defineStore('auth', () => {
     return data
   }
   const logout = () => {
-    user.value = {} as ICreateUserActiveDirectoryResponse
-    loginData.value = {} as ILoginResponse
-    localStorage.removeItem('token')
+    authData.value = {} as ILoginResponse
+    localStorage.removeItem('auth')
     router.push({ name: 'TheLogin' })
   }
 
   const isExpired = () => {
-    if (loginData.value.access_token) {
-      const decodedToken = jwtDecode(loginData.value.access_token)
+    if (authData.value.access_token) {
+      const decodedToken = jwtDecode(authData.value.access_token)
       if (decodedToken.exp && typeof decodedToken.exp === 'number' && decodedToken.exp < Date.now() / 1000) {
         return true
       }
     }
     return false
   }
-  return { user, loginData, login, register, logout, isExpired }
+  return { authData, login, register, logout, isExpired }
 })

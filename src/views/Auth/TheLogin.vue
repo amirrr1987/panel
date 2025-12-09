@@ -53,6 +53,7 @@ import { ref } from 'vue'
 import { Form, FormItem, Input, Button, Card, Divider } from 'ant-design-vue/es'
 import { useAuthStore } from '@/stores/auth.store'
 import type { ILoginRequest } from '@/interfaces/auth.interface'
+import { useTranslation } from 'i18next-vue'
 import { useRouter } from 'vue-router'
 import {
   UserOutlined,
@@ -62,11 +63,12 @@ import {
 } from '@ant-design/icons-vue'
 const router = useRouter()
 const authStore = useAuthStore()
+const { t } = useTranslation()
 const loading = ref(false)
 const showPassword = ref(false)
 const loginData = ref<ILoginRequest>({
-  username: 'fw.super.admin1404@gmail.com',
-  password: '@FremeWork#1404',
+  username: 'Admin',
+  password: 'Aa@123456',
   grant_type: '',
   client_id: '',
   client_secret: '',
@@ -75,7 +77,6 @@ const onLogin = async () => {
   try {
     loading.value = true
     await authStore.login(loginData.value)
-    console.log(authStore.loginData)
     router.push({ name: 'TheDashboard' })
     loading.value = false
   } catch (error) {

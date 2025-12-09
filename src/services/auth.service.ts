@@ -1,25 +1,23 @@
 import { getApiConfig } from '@/composable/useApiConfig'
 import { getHttpClient } from '@/config/http.config'
-import type { Result } from '@/interfaces/result.interface'
-import type { ILoginRequest, ILoginResponse } from '@/interfaces/auth.interface'
-import type { ICreateUserActiveDirectoryRequest, ICreateUserActiveDirectoryResponse } from '@/interfaces/users.interface'
+import type { IResult } from '@/interfaces/result.interface'
+import type { ILoginReqBody, ILoginResBody, IRefreshTokenReqBody, IRefreshTokenResBody } from '@/interfaces/auth.interface'
 
 export const useAuthService = () => {
-  const login = async (reqBody: ILoginRequest): Promise<Result<ILoginResponse>> => {
-    const apiConfig = getApiConfig()
-    const http = getHttpClient()
-    const response = await http.post<Result<ILoginResponse>>(apiConfig.Auth.V1.Login, reqBody)
+  const apiConfig = getApiConfig()
+  const http = getHttpClient()
+  const login = async (reqBody: ILoginReqBody): Promise<IResult<ILoginResBody>> => {
+    const response = await http.post<IResult<ILoginResBody>>(apiConfig.Auth.V1.Login, reqBody)
     return response.data
   }
-  const register = async (reqBody: ICreateUserActiveDirectoryRequest): Promise<Result<ICreateUserActiveDirectoryResponse>> => {
-    const apiConfig = getApiConfig()
-    const http = getHttpClient()
-    const response = await http.post<Result<ICreateUserActiveDirectoryResponse>>(
-      apiConfig.Users.V1.CreateUser,
+
+  const refreshToken = async (reqBody: IRefreshTokenReqBody): Promise<IResult<IRefreshTokenResBody>> => {
+    const response = await http.post<IResult<IRefreshTokenResBody>>(
+      apiConfig.Auth.V1.RefreshToken,
       reqBody,
     )
     return response.data
   }
 
-  return { login, register }
+  return { login, refreshToken }
 }

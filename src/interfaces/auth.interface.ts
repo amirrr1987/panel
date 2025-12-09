@@ -1,11 +1,11 @@
-export interface ILoginRequest {
+export interface ILoginReqBody {
   username: string;
   password: string;
   grant_type: string;
   client_id: string;
   client_secret: string;
 }
-export interface ILoginResponse {
+export interface ILoginResBody {
   access_token: string | null;
   expires_in: string | null;
   refresh_expires_in: string | null;
@@ -16,3 +16,9 @@ export interface ILoginResponse {
   'not-before-policy': number;
   id_token: string | null;
 }
+
+export interface IRefreshTokenReqBody {
+  token: string;
+  refreshToken: string;
+}
+export type IRefreshTokenResBody = ILoginResBody;

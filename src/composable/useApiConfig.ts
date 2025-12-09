@@ -4,21 +4,24 @@ export interface ApiConfig {
   baseURL: string
   Auth: {
     V1: {
-      Login: string
-      Register: string
-      ForgotPassword: string
-      ResetPassword: string
+      Login: 'v1/Auth/Login'
+      RefreshToken: 'v1/Auth/RefreshToken'
+      ValidateToken: 'v1/Auth/ValidateToken'
+      AddClaim: 'v1/Auth/AddClaim'
+      IsAuthorized: 'v1/Auth/IsAuthorized'
+      IsInRole: 'v1/Auth/IsInRole'
+      AddPolicy: 'v1/Auth/AddPolicy'
     }
   }
   Users: {
     V1: {
-      CreateUser: string
-      GetAllUsers: string
+      GetAllUsers: 'Users/GetAllUsers'
+      CreateUser: 'Users/CreateUser'
     }
   }
   Roles: {
     V1: {
-      GetRoles: string
+      GetRoles: 'Roles/GetRoles'
     }
   }
 }
