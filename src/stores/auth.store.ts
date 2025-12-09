@@ -1,8 +1,4 @@
 import type { ILoginReqBody, ILoginResBody } from '@/interfaces/auth.interface'
-import type {
-  ICreateUserActiveDirectoryRequest,
-  ICreateUserActiveDirectoryResponse,
-} from '@/interfaces/users.interface'
 import router from '@/router'
 import { useAuthService } from '@/services/auth.service'
 import { useStorage } from '@vueuse/core'

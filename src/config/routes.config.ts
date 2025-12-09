@@ -9,25 +9,19 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/',
         name: 'TheDashboard',
-        meta: { label: 'Home', icon: 'mdi:home' },
+        meta: { label: 'menu.dashboard', icon: 'mdi:home' },
         component: () => import('@/views/TheDashboard.vue'),
-      },
-      {
-        path: '/page',
-        name: 'ThePage',
-        meta: { label: 'page', icon: 'mdi:folder' },
-        component: () => import('@/views/ThePage.vue'),
       },
       {
         path: '/profile',
         name: 'TheProfile',
-        meta: { label: 'profile', icon: 'mdi:user' },
+        meta: { label: 'menu.profile', icon: 'mdi:user' },
         component: () => import('@/views/TheProfile.vue'),
       },
       {
         path: '/users',
         name: 'UsersList',
-        meta: { label: 'users', icon: 'mdi:users' },
+        meta: { label: 'menu.users', icon: 'mdi:users' },
         component: () => import('@/views/Users/List.vue'),
       },
     ],

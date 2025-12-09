@@ -1,10 +1,12 @@
-import type { LoginProviderEnum } from '@/enums'
+/* eslint-disable @typescript-eslint/no-namespace */
+
+import type { IResult } from "./result.interface"
 
 export interface ClaimDto {
-  type: string;
-  value: string;
-  valueType?: string | null;
-  issuer?: string | null;
+  type: string
+  value: string
+  valueType?: string | null
+  issuer?: string | null
 }
 
 export interface UserDto {
@@ -14,11 +16,30 @@ export interface UserDto {
   claims?: ClaimDto[]
 }
 
-export interface ICreateUserActiveDirectoryRequest {
+export interface ICreateUserReqBody {
   username: string
   password: string
-  loginProvider: LoginProviderEnum
 }
-export interface ICreateUserActiveDirectoryResponse {
+export interface ICreateUserResBody {
   isSuccess: boolean
+}
+
+export namespace IUser {
+  export namespace CreateUser {
+    export namespace Request {
+      export interface Body {
+        username: string
+        password: string
+      }
+    }
+    export namespace Response {
+      export type Body = boolean
+    }
+  }
+
+  export namespace GetUsers {
+    export namespace Response {
+      export type Body = UserDto[]
+    }
+  }
 }

@@ -1,5 +1,5 @@
 export const panelMenu = [
-  { name: 'TheDashboard', label: 'Home', icon: 'mdi:home', to: '/' },
+  { name: 'TheDashboard', label: 'menu.dashboard', icon: 'mdi:home', to: '/' },
 
-  { name: 'UsersList', label: 'Users', icon: 'mdi:users', to: '/users' },
+  { name: 'UsersList', label: 'menu.users', icon: 'mdi:users', to: '/users' },
 ]

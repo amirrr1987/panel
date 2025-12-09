@@ -6,7 +6,7 @@ import { computed, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import router from '@/router'
 export const useTabStore = defineStore('tabs', () => {
-  type Tab = { key: string; title: string; icon: string; closable: boolean }
+  type Tab = { key: string; label: string; icon: string; closable: boolean }
 
   const tabs = useStorage<Tab[]>('tabs', [])
 
@@ -28,11 +28,14 @@ export const useTabStore = defineStore('tabs', () => {
   )
 
   const addTab = (route: RouteLocationNormalized) => {
+    if(route.name === 'TheLogin' || route.name === 'TheRegister') {
+      return
+    }
     if (!tabs.value.find((t) => t.key === (route.name as string))) {
       const closable = tabs.value.length >= 1 ? true : false
       tabs.value.push({
         key: route.name as string,
-        title: route.meta?.label as string,
+        label: route.meta?.label as string,
         icon: route.meta?.icon as string,
         closable: closable,
       })

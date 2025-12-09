@@ -1,5 +1,12 @@
 export default {
   translation: {
+
+    // menu
+    'menu.dashboard': 'Dashboard',
+    'menu.users': 'Users',
+
+
+
     'app.name': 'Bank Keshvarzi',
     'settings.title': 'Settings',
     'settings.colorPrimary': 'Color Primary',

@@ -1,6 +1,11 @@
 <template>
   <Card title="Users List">
-    <Table :columns="columns" :dataSource="users" :loading="isLoading">
+    <template #extra>
+      <Button type="primary" ghost @click="open = true" icon="plus">sdf</Button>
+      <UserForm v-model:open="open" />
+      <!-- <TheButtonIcon icon="mdi:plus" @click="router.push({ name: 'UsersForm' })" /> -->
+    </template>
+    <Table :columns="columns" :dataSource="userStore.users" :loading="isLoading">
       <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'roles' && record.roles?.length > 0">
           <Tag v-for="role in record.roles" :key="role">{{ role }}</Tag>
@@ -15,16 +20,16 @@
   </Card>
 </template>
 <script setup lang="ts">
-import { Card, Table, Tag } from 'ant-design-vue/es'
-import { useUsersService } from '@/services/users.service'
+import { Card, Table, Tag, Button } from 'ant-design-vue/es'
 import { onMounted, ref } from 'vue'
-import type { UserDto } from '@/interfaces/users.interface'
 import type { ColumnType } from 'ant-design-vue/es/table'
 import { useTranslation } from 'i18next-vue'
-const { getUsers } = useUsersService()
-const users = ref<UserDto[]>([])
+import { useUserStore } from '@/stores/user.store'
+import UserForm from './Form.vue'
+const userStore = useUserStore()
 const isLoading = ref(false)
-const error = ref<string | null>(null)
+const open = ref(false)
+
 const { t } = useTranslation()
 const columns = ref<ColumnType[]>([
   {
@@ -51,13 +56,7 @@ const columns = ref<ColumnType[]>([
 
 onMounted(async () => {
   isLoading.value = true
-  const { data, isSuccess, message } = await getUsers()
-  if (isSuccess) {
-    users.value = data ?? ([] as UserDto[])
-    console.log('🚀 ~ users.value:', users.value)
-  } else {
-    error.value = message
-  }
+  await userStore.getUsers()
   isLoading.value = false
 })
 </script>

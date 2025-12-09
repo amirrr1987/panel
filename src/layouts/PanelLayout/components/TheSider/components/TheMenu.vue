@@ -4,7 +4,7 @@
       <template #icon>
         <Icon :icon="item.icon" />
       </template>
-      <RouterLink :to="item.to">{{ item.label }}</RouterLink>
+      <RouterLink :to="item.to">{{ t(item.label) }}</RouterLink>
     </MenuItem>
   </Menu>
 </template>
@@ -14,6 +14,8 @@ import { Icon } from '@iconify/vue'
 import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { panelMenu } from '@/config/menu.config'
+import { useTranslation } from 'i18next-vue'
+const { t } = useTranslation()
 const menuNames = ref(['TheDashboard'])
 const route = useRoute()
 

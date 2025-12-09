@@ -1,5 +1,11 @@
 export default {
   translation: {
+
+    // menu
+    'menu.dashboard': 'داشبورد',
+    'menu.users': 'کاربران',
+
+
     'app.name': 'بانک کشاورزی',
     inquiryhub: 'استعلام',
     settings: 'تنظیمات',

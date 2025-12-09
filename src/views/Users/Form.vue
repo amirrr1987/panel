@@ -1,63 +1,55 @@
 <template>
-  <Card>
-    <Table :columns="columns" :dataSource="users" :loading="isLoading">
-      <template #bodyCell="{ column, record }">
-        <template v-if="column.dataIndex === 'roles' && record.roles?.length > 0">
-          <Tag v-for="role in record.roles" :key="role">{{ role }}</Tag>
-        </template>
-        <template v-if="column.dataIndex === 'claims'">
-          <Tag v-for="claim in record.claims" :key="claim.type" :color="claim.color">{{
-            claim.type
-          }}</Tag>
-        </template>
-      </template>
-    </Table>
-  </Card>
+  <Modal :open="open" @cancel="cancel" @ok="ok" title="Create User">
+    <Form :model="user" @on-finish="onSubmit" layout="vertical">
+      <FormItem
+        :label="t('username')"
+        name="username"
+        :rules="[{ required: true, message: 'Please input your username' }]"
+      >
+        <Input v-model:value="user.username" placeholder="Username" />
+      </FormItem>
+      <FormItem
+        :label="t('password')"
+        name="password"
+        :rules="[{ required: true, message: 'Please input your password' }]"
+      >
+        <Input v-model:value="user.password" placeholder="Password" />
+      </FormItem>
+    </Form>
+  </Modal>
 </template>
 <script setup lang="ts">
-import { Card, Table, Tag } from 'ant-design-vue/es'
-import { useUsersService } from '@/services/users.service'
-import { onMounted, ref } from 'vue'
-import type { UserDto } from '@/interfaces/users.interface'
-import type { ColumnType } from 'ant-design-vue/es/table'
+import { Modal, Form, FormItem, Input } from 'ant-design-vue/es'
+import { ref } from 'vue'
 import { useTranslation } from 'i18next-vue'
-const { getUsers } = useUsersService()
-const users = ref<UserDto[]>([])
+import { useUserStore } from '@/stores/user.store'
+import type { ICreateUserReqBody } from '@/interfaces/users.interface'
+const userStore = useUserStore()
 const isLoading = ref(false)
-const error = ref<string | null>(null)
 const { t } = useTranslation()
-const columns = ref<ColumnType[]>([
-  {
-    title: t('id'),
-    dataIndex: 'id',
-    key: 'id',
-  },
-  {
-    title: t('username'),
-    dataIndex: 'username',
-    key: 'username',
-  },
-  {
-    title: t('roles'),
-    dataIndex: 'roles',
-    key: 'roles',
-  },
-  {
-    title: t('claims'),
-    dataIndex: 'claims',
-    key: 'claims',
-  },
-])
 
-onMounted(async () => {
-  isLoading.value = true
-  const { data, isSuccess, message } = await getUsers()
-  if (isSuccess) {
-    users.value = data ?? ([] as UserDto[])
-    console.log('🚀 ~ users.value:', users.value)
-  } else {
-    error.value = message
-  }
-  isLoading.value = false
+const open = defineModel<boolean>('open', { required: true })
+
+const cancel = () => {
+  open.value = false
+}
+const ok = () => {
+  onSubmit()
+}
+
+const user = ref<ICreateUserReqBody>({
+  username: '',
+  password: '',
 })
+const onSubmit = async () => {
+  try {
+    isLoading.value = true
+    await userStore.createUser(user.value)
+    isLoading.value = false
+  } catch (error) {
+    console.error(error)
+  } finally {
+    open.value = false
+  }
+}
 </script>

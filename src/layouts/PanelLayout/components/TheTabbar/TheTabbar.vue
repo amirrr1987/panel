@@ -41,10 +41,10 @@ const { width } = useWindowSize()
         :closable="tab.closable"
       >
         <template #tab>
-          <Tooltip :title="t(tab.title)">
+          <Tooltip :title="t(tab.label)">
             <div class="flex items-center justify-center gap-2">
               <Icon :icon="tab.icon" />
-              <template v-if="width > 768 && !props.collapsed">{{ t(tab.title) }}</template>
+              <template v-if="width > 768 && !props.collapsed">{{ t(tab.label) }}</template>
             </div>
           </Tooltip>
         </template>
@@ -69,19 +69,19 @@ const { width } = useWindowSize()
   justify-content: space-between;
   display: flex;
 }
-// .ant-tabs {
-//   .ant-tabs-tab {
-//     &::before{
-//       content: '';
-//       display: block;
-//       width:6px;
-//       height: 20px;
-//       border-start-end-radius: 10px;
-//       background-color: red !important;
-//       position: absolute;
-//       bottom: 0;
-//       left: -6px;
-//     }
-//   }
-// }
+.ant-tabs-rtl.ant-tabs-card.ant-tabs-top >.ant-tabs-nav .ant-tabs-tab+.ant-tabs-tab {
+  border-bottom-color: transparent !important;
+
+}
+.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active {
+  background: #f5f5f5;
+  border-right-color: var(--color-gray-300) !important;
+  border-top-color: var(--color-gray-300) !important;
+  border-left-color: var(--color-gray-300) !important;
+  border-bottom-color: transparent !important;
+}
+.ant-tabs-top >.ant-tabs-nav::before{
+  border-bottom-color: transparent !important;
+
+}
 </style>
