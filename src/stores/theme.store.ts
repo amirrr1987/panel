@@ -5,10 +5,9 @@ import type { AliasToken } from 'ant-design-vue/es/theme/internal'
 import type { OverrideToken } from 'ant-design-vue/es/theme/interface'
 import type { MappingAlgorithm, SizeType } from 'ant-design-vue/es/config-provider/context'
 import { useStorage } from '@vueuse/core'
-import { i18n } from '@/i18n'
 import { colors } from '@/config/color.config'
 import { useTranslation } from 'i18next-vue'
-
+import type { Transition } from '@/types'
 export const useThemeStore = defineStore('theme', () => {
   const isDark = useStorage('isDark', false)
   const isCompact = useStorage('isCompact', false)
@@ -17,7 +16,7 @@ export const useThemeStore = defineStore('theme', () => {
   const language = useStorage<'fa' | 'en'>('language', 'fa')
   const componentSize = useStorage<SizeType>('componentSize', 'middle')
   const direction = useStorage<'ltr' | 'rtl'>('direction', 'rtl')
-  const transition = useStorage<string>('transition', 'fade')
+  const transition = useStorage<Transition>('transition', 'fade')
   const token = useStorage<Partial<AliasToken>>('token', {
     colorPrimary: '#1677ff',
     fontFamily: 'Poppins, Vazirmatn, sans-serif',
@@ -46,9 +45,9 @@ export const useThemeStore = defineStore('theme', () => {
 
   const spacing = computed(() => {
     if (isCompact.value) {
-      if (componentSize.value === 'small') return '0.19rem'
-      if (componentSize.value === 'middle') return '0.21rem'
-      if (componentSize.value === 'large') return '0.23rem'
+      if (componentSize.value === 'small') return '0.21rem'
+      if (componentSize.value === 'middle') return '0.23rem'
+      if (componentSize.value === 'large') return '0.25rem'
     }
     if (!isCompact.value) {
       if (componentSize.value === 'small') return '0.23rem'
@@ -132,7 +131,7 @@ export const useThemeStore = defineStore('theme', () => {
     language.value = 'fa'
     token.value = {
       colorPrimary: '#1890ff',
-      fontFamily: 'Poppins, Vazirmatn, sans-serif',
+      fontFamily: 'Vazirmatn, Poppins, sans-serif',
       borderRadius: 6,
       fontSize: 16,
     }

@@ -18,12 +18,6 @@ const { isLoading } = useLoading()
             <component :is="Component" />
           </RouterView>
         </Transition>
-<!-- 
-        <RouterView v-slot="{ Component }">
-          <Transition :name="themeStore.transition">
-            <component :is="Component" />
-          </Transition>
-        </RouterView> -->
       </div>
     </div>
   </LayoutContent>

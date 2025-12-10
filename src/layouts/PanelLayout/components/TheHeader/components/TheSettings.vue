@@ -5,10 +5,16 @@
         <Tooltip v-for="(color, key) in colors" :key="color.oklch" :title="key">
           <RadioButton
             :value="color.hex"
-            :style="{
-              backgroundColor: color.hex,
-            }"
-          />
+            class="inline-flex! items-center justify-center hover:bg-primary! hover:text-white!"
+            :class="{ 'bg-primary! text-white!': themeStore.token.colorPrimary === color.hex }"
+          >
+            <div
+              class="w-4 h-4 rounded-full"
+              :style="{
+                backgroundColor: themeStore.token.colorPrimary === color.hex ? 'white' : color.hex,
+              }"
+            />
+          </RadioButton>
         </Tooltip>
       </RadioGroup>
     </FormItem>
@@ -171,13 +177,9 @@
     </FormItem>
     <FormItem :label="t('transition')" name="transition">
       <RadioGroup v-model:value="themeStore.transition">
-        <Tooltip
-          v-for="transition in transitions"
-          :key="transition.name"
-          :value="transition.name"
-          :title="transition.name"
-        >
+        <Tooltip v-for="transition in transitions" :key="transition.key" :title="t(transition.label)">
           <RadioButton
+            :value="transition.key"
             class="inline-flex! items-center justify-center hover:bg-primary! hover:text-white!"
           >
             <Icon
@@ -197,16 +199,7 @@
 import { colors } from '@/config/color.config'
 import { useThemeStore } from '@/stores/theme.store'
 import { Icon } from '@iconify/vue'
-import {
-  Form,
-  FormItem,
-  InputNumber,
-  RadioButton,
-  RadioGroup,
-  Tooltip,
-  Button,
-  Radio,
-} from 'ant-design-vue/es'
+import { Form, FormItem, RadioButton, RadioGroup, Tooltip, Button } from 'ant-design-vue/es'
 import { transitions } from '@/config/transition.config'
 import { useTranslation } from 'i18next-vue'
 const themeStore = useThemeStore()

@@ -1,19 +1,8 @@
 export type Transition =
-  | 'slide-up'
-  | 'slide-down'
-  | 'slide-left'
-  | 'slide-right'
-  | 'fade'
-  | 'fade-slide'
-  | 'fade-up'
   | 'fade-down'
-  | 'fade-scale'
-  | 'bounce'
-  | 'fade-slow'
-  | 'fade-slide-slow'
-  | 'fade-up-slow'
-  | 'fade-down-slow'
-  | 'collapse'
+  | 'fade-slide'
+  | 'fade'
+  | 'fade-up'
 
 export interface TransitionItem {
   name: Transition
