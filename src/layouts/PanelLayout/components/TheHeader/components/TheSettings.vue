@@ -177,7 +177,11 @@
     </FormItem>
     <FormItem :label="t('transition')" name="transition">
       <RadioGroup v-model:value="themeStore.transition">
-        <Tooltip v-for="transition in transitions" :key="transition.key" :title="t(transition.label)">
+        <Tooltip
+          v-for="transition in transitions"
+          :key="transition.key"
+          :title="t(transition.label)"
+        >
           <RadioButton
             :value="transition.key"
             class="inline-flex! items-center justify-center hover:bg-primary! hover:text-white!"
@@ -191,7 +195,7 @@
       </RadioGroup>
     </FormItem>
     <FormItem :label="t('reset')" name="reset">
-      <Button type="primary" @click="themeStore.reset">{{ t('reset') }}</Button>
+      <Button type="primary" @click="reset">{{ t('reset') }}</Button>
     </FormItem>
   </Form>
 </template>
@@ -199,10 +203,27 @@
 import { colors } from '@/config/color.config'
 import { useThemeStore } from '@/stores/theme.store'
 import { Icon } from '@iconify/vue'
-import { Form, FormItem, RadioButton, RadioGroup, Tooltip, Button } from 'ant-design-vue/es'
+import {
+  Form,
+  FormItem,
+  RadioButton,
+  RadioGroup,
+  Tooltip,
+  Button,
+  message,
+} from 'ant-design-vue/es'
 import { transitions } from '@/config/transition.config'
 import { useTranslation } from 'i18next-vue'
 const themeStore = useThemeStore()
 const { t } = useTranslation()
+
+const reset = () => {
+  message.loading(t('resetting'))
+  themeStore.reset()
+  setTimeout(() => {
+    message.destroy()
+    message.success(t('resetSuccess'))
+  }, 1000)
+}
 </script>
 <style lang="less"></style>
