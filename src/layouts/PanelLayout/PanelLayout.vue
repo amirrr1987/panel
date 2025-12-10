@@ -20,8 +20,7 @@ const collapsed = ref(false)
       :open="tourStore.open"
       :steps="tourStore.steps"
       @close="tourStore.onFinish"
-      :mask="true"
-      
+
     />
     <TheHeader
       :class="['app-header', { collapsed: isFullContent }]"
@@ -34,7 +33,11 @@ const collapsed = ref(false)
         :ref="(el) => (tourStore.siderRef = getElement(el) || undefined)"
       />
       <Layout>
-        <TheTabbar v-model:isFullContent="isFullContent" :collapsed="collapsed" />
+        <TheTabbar
+          v-model:isFullContent="isFullContent"
+          :collapsed="collapsed"
+          :ref="(el) => (tourStore.tabbarRef = getElement(el) || undefined)"
+        />
         <TheContent
           v-model:isFullContent="isFullContent"
           :ref="(el) => (tourStore.contentRef = getElement(el) || undefined)"

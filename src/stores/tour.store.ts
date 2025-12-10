@@ -8,8 +8,8 @@ export const useTourStore = defineStore('tour', () => {
   const headerRef = ref<HTMLElement | undefined>(undefined)
   const siderRef = ref<HTMLElement | undefined>(undefined)
   const contentRef = ref<HTMLElement | undefined>(undefined)
-  const footerRef = ref<HTMLElement | undefined>(undefined)
   const settingsRef = ref<HTMLElement | undefined>(undefined)
+  const tabbarRef = ref<HTMLElement | undefined>(undefined)
   const current = ref(0)
 
   const steps: TourProps['steps'] = [
@@ -22,6 +22,12 @@ export const useTourStore = defineStore('tour', () => {
         | (() => HTMLElement)
         | (() => null)
         | undefined,
+      nextButtonProps: {
+        children: () => 'بعدی',
+      },
+      prevButtonProps: {
+        children: () => 'قبلی',
+      },
     },
     {
       title: 'منوی کناری',
@@ -32,6 +38,12 @@ export const useTourStore = defineStore('tour', () => {
         | (() => null)
         | undefined,
       placement: 'right',
+      nextButtonProps: {
+        children: () => 'بعدی',
+      },
+      prevButtonProps: {
+        children: () => 'قبلی',
+      },
     },
     {
       title: 'محتوای اصلی',
@@ -43,6 +55,27 @@ export const useTourStore = defineStore('tour', () => {
         | (() => null)
         | undefined,
       placement: 'top',
+      nextButtonProps: {
+        children: () => 'بعدی',
+      },
+      prevButtonProps: {
+        children: () => 'قبلی',
+      },
+    },
+    {
+      title: 'تب بار',
+      description: 'از این بخش می‌توانید به تب بار دسترسی پیدا کنید.',
+      target: (() => tabbarRef.value || null) as
+        | HTMLElement
+        | (() => HTMLElement)
+        | (() => null)
+        | undefined,
+      nextButtonProps: {
+        children: () => 'بعدی',
+      },
+      prevButtonProps: {
+        children: () => 'قبلی',
+      },
     },
     {
       title: 'تنظیمات',
@@ -53,6 +86,12 @@ export const useTourStore = defineStore('tour', () => {
         | (() => null)
         | undefined,
       placement: 'center',
+      nextButtonProps: {
+        children: () => 'بعدی',
+      },
+      prevButtonProps: {
+        children: () => 'بستن',
+      },
     },
   ]
 
@@ -69,7 +108,7 @@ export const useTourStore = defineStore('tour', () => {
     headerRef,
     siderRef,
     contentRef,
-    footerRef,
+    tabbarRef,
     settingsRef,
     current,
     steps,
