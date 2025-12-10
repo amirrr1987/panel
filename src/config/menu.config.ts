@@ -15,5 +15,6 @@ export function getMenuItems(): ItemType[] {
         { key: 'UsersList', label: t('menu.users'), icon: h(Icon, { icon: 'mdi:users' }) },
       ],
     },
+    { key: 'ThePayments', label: t('menu.payments'), icon: h(Icon, { icon: 'mdi:credit-card' }) },
   ]
 }

@@ -24,6 +24,12 @@ const routes: RouteRecordRaw[] = [
         meta: { label: 'menu.users', icon: 'mdi:users' },
         component: () => import('@/views/Users/List.vue'),
       },
+      {
+        path: '/payments',
+        name: 'ThePayments',
+        meta: { label: 'menu.payments', icon: 'mdi:credit-card' },
+        component: () => import('@/views/Payments/List.vue'),
+      },
     ],
   },
   {

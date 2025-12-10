@@ -1,6 +1,6 @@
 export const transitions = [
-  { key: 'slide-x', name: 'slide-x', icon: 'mdi:arrow-right' },
-  { key: 'slide-y', name: 'slide-y', icon: 'mdi:arrow-down' },
-  { key: 'fade', name: 'fade', icon: 'mdi:opacity' },
-  { key: 'random', name: 'random', icon: 'mdi:shuffle' },
+  { key: 'fade', label: 'fade', icon: 'mdi:opacity' },
+  { key: 'fade-down', label: 'fade-down', icon: 'mdi:arrow-down' },
+  { key: 'fade-slide', label: 'fade-slide', icon: 'mdi:arrow-right' },
+  { key: 'fade-up', label: 'fade-up', icon: 'mdi:arrow-up' },
 ]

@@ -8,7 +8,11 @@ import { useStorage } from '@vueuse/core'
 import { colors } from '@/config/color.config'
 import { useTranslation } from 'i18next-vue'
 import type { Transition } from '@/types'
+import dayjs from 'dayjs'
+import jalaliday from 'jalaliday'
+
 export const useThemeStore = defineStore('theme', () => {
+  dayjs.extend(jalaliday)
   const isDark = useStorage('isDark', false)
   const isCompact = useStorage('isCompact', false)
   const hashed = useStorage('hashed', false)
@@ -32,15 +36,8 @@ export const useThemeStore = defineStore('theme', () => {
       get colorBgTrigger() {
         return token.value.colorPrimary
       },
-      // get colorBgLayout() {
-      //   return antToken.value.colorBgContainer
-      // },
     },
-    Tabs: {
-      // get colorBgContainer() {
-      //   return antToken.value.colorBgContainer
-      // },
-    },
+
   })
 
   const spacing = computed(() => {
@@ -69,13 +66,22 @@ export const useThemeStore = defineStore('theme', () => {
     () => language.value,
     (language) => {
       i18next.changeLanguage(language)
-      // document.documentElement.setAttribute('lang', language)
-      document.documentElement.style.setProperty(
-        '--font-family',
-        language === 'fa' ? 'Vazirmatn, Poppins, sans-serif' : 'Poppins, Vazirmatn, sans-serif',
-      )
-      token.value.fontFamily =
-        language === 'fa' ? 'Vazirmatn, Poppins, sans-serif' : 'Poppins, Vazirmatn, sans-serif'
+
+      if (language === 'fa') {
+        document.documentElement.setAttribute('lang', 'fa')
+        dayjs.calendar('jalali')
+        document.documentElement.style.setProperty(
+          '--font-family',
+          'Vazirmatn, Poppins, sans-serif',
+        )
+      } else {
+        document.documentElement.setAttribute('lang', 'en')
+        dayjs.calendar('gregory')
+        document.documentElement.style.setProperty(
+          '--font-family',
+          'Poppins, Vazirmatn, sans-serif',
+        )
+      }
     },
   )
   watch(
