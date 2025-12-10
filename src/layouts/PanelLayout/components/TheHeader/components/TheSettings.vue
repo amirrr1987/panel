@@ -13,22 +13,21 @@
       </RadioGroup>
     </FormItem>
     <FormItem :label="t('fontSize')" name="fontSize">
-      <InputNumber
-        v-model:value="themeStore.token.fontSize"
-        :min="10"
-        :max="24"
-        :step="2"
-        :default-value="16"
-      />
+      <RadioGroup v-model:value="themeStore.token.fontSize">
+        <RadioButton :value="12">12</RadioButton>
+        <RadioButton :value="14">14</RadioButton>
+        <RadioButton :value="16">16</RadioButton>
+        <RadioButton :value="18">18</RadioButton>
+      </RadioGroup>
     </FormItem>
     <FormItem :label="t('radius')" name="borderRadius">
-      <InputNumber
-        v-model:value="themeStore.token.borderRadius"
-        :min="0"
-        :max="18"
-        :step="3"
-        :default-value="6"
-      />
+      <RadioGroup v-model:value="themeStore.token.borderRadius">
+        <RadioButton :value="0">0</RadioButton>
+        <RadioButton :value="3">3</RadioButton>
+        <RadioButton :value="6">6</RadioButton>
+        <RadioButton :value="9">9</RadioButton>
+        <RadioButton :value="12">12</RadioButton>
+      </RadioGroup>
     </FormItem>
     <FormItem :label="t('theme')" name="isDark">
       <RadioGroup v-model:value="themeStore.isDark">
@@ -206,6 +205,7 @@ import {
   RadioGroup,
   Tooltip,
   Button,
+  Radio,
 } from 'ant-design-vue/es'
 import { transitions } from '@/config/transition.config'
 import { useTranslation } from 'i18next-vue'

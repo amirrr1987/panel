@@ -21,6 +21,7 @@ const collapsed = ref(false)
       :steps="tourStore.steps"
       @close="tourStore.onFinish"
       :mask="true"
+      
     />
     <TheHeader
       :class="['app-header', { collapsed: isFullContent }]"

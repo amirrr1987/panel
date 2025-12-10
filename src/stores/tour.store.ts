@@ -45,16 +45,6 @@ export const useTourStore = defineStore('tour', () => {
       placement: 'top',
     },
     {
-      title: 'فوتر',
-      description: 'در فوتر اطلاعات تکمیلی یا راهنمای سریع قرار دارد.',
-      target: (() => footerRef.value || null) as
-        | HTMLElement
-        | (() => HTMLElement)
-        | (() => null)
-        | undefined,
-      placement: 'top',
-    },
-    {
       title: 'تنظیمات',
       description: 'در این قسمت می‌توانید تنظیمات پنل را تنظیم کنید.',
       target: (() => settingsRef.value || null) as
