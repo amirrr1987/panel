@@ -49,8 +49,8 @@ const { width } = useWindowSize()
           </Tooltip>
         </template>
       </TabPane>
-    </Tabs>
-    <div class="min-w-fit">
+      <template #tabBarExtraContent>
+        <div class="min-w-fit">
       <Divider type="vertical" />
       <Tooltip :title="isFullContent ? t('fullContentExit') : t('fullContent')" placement="bottom">
         <TheButtonIcon
@@ -62,26 +62,44 @@ const { width } = useWindowSize()
         />
       </Tooltip>
     </div>
+      </template>
+    </Tabs>
+
   </section>
 </template>
 <style lang="less">
-.ant-tabs-dropdown-menu-title-content {
-  justify-content: space-between;
-  display: flex;
+// .ant-tabs-dropdown-menu-title-content {
+//   justify-content: space-between;
+//   display: flex;
+// }
+.ant-tabs{
+  .ant-tabs-nav{
+    .ant-tabs-nav-wrap{
+      .ant-tabs-nav-list{
+        .ant-tabs-tab{
+          color: #999999 !important;
+          &.ant-tabs-tab-active{
+            border-bottom-color: transparent !important;
+            background: #f5f5f5 !important;
+          }
+        }
+      }
+    }
+  }
 }
-.ant-tabs-rtl.ant-tabs-card.ant-tabs-top >.ant-tabs-nav .ant-tabs-tab+.ant-tabs-tab {
-  border-bottom-color: transparent !important;
+// .ant-tabs-rtl.ant-tabs-card.ant-tabs-top >.ant-tabs-nav .ant-tabs-tab+.ant-tabs-tab {
+//   border-bottom-color: transparent !important;
 
-}
-.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active {
-  background: #f5f5f5;
-  border-right-color: var(--color-gray-300) !important;
-  border-top-color: var(--color-gray-300) !important;
-  border-left-color: var(--color-gray-300) !important;
-  border-bottom-color: transparent !important;
-}
-.ant-tabs-top >.ant-tabs-nav::before{
-  border-bottom-color: transparent !important;
+// }
+// .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active {
+//   background: #f5f5f5;
+//   border-right-color: var(--color-gray-300) !important;
+//   border-top-color: var(--color-gray-300) !important;
+//   border-left-color: var(--color-gray-300) !important;
+//   border-bottom-color: transparent !important;
+// }
+// .ant-tabs-top >.ant-tabs-nav::before{
+//   border-bottom-color: transparent !important;
 
-}
+// }
 </style>
