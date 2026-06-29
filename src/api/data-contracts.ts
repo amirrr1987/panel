@@ -1177,7 +1177,17 @@ export enum ILayoutKindDTO {
 }
 
 export interface ILoginRequestDTO {
-  /** کد شعبه */
+  /**
+   * @title Branch Code
+   * @description کد شعبه (Branch Code)
+   * کد شعبه
+   * @example "101"
+   * @swagger
+   *   branchCode:
+   *     type: string
+   *     description: "کد شعبه"
+   *     example: "101"
+   */
   branchCode: string;
   /**
    * رمز عبور

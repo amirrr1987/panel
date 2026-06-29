@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { ConfigProvider } from 'ant-design-vue/es'
-import { useAppSettingStore } from './stores/app-setting.store';
+import { useSettingStore } from './stores/setting.store';
 
-const appSetting = useAppSettingStore()
+const setting = useSettingStore()
 </script>
 
 <template>
   <ConfigProvider
-    :theme="appSetting.theme"
-    :direction="appSetting.direction"
-    :locale="appSetting.locale"
-    :componentSize="appSetting.componentSize"
+    :theme="setting.theme"
+    :direction="setting.direction"
+    :locale="setting.locale"
+    :componentSize="setting.componentSize"
   >
     <RouterView />
   </ConfigProvider>

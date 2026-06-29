@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { blue } from '@ant-design/colors'
-import { Layout, LayoutContent } from 'ant-design-vue/es'
+import { Card, Layout, LayoutContent } from 'ant-design-vue/es'
 import gsap from 'gsap'
 import { onMounted, useTemplateRef } from 'vue'
 import { RouterView } from 'vue-router'
@@ -22,8 +22,10 @@ onMounted(() => {
 
 <template>
   <Layout>
-    <LayoutContent>
-      <RouterView />
+    <LayoutContent class="flex items-center justify-center h-screen">
+      <Card>
+        <RouterView />
+      </Card>
     </LayoutContent>
   </Layout>
 </template>

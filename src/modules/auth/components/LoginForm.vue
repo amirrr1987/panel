@@ -1,124 +1,78 @@
 <script setup lang="ts">
-import { Icon } from '@iconify/vue'
-import type { RuleObject } from 'ant-design-vue/es/form'
+import { Icon } from "@iconify/vue";
+import type { RuleObject } from "ant-design-vue/es/form";
 import {
-  Alert, Button, Card, Form, FormItem, Input, InputPassword,
-  TypographyTitle, TypographyText,
-} from 'ant-design-vue/es'
-import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
+  Alert,
+  Button,
+  Form,
+  FormItem,
+  Input,
+  InputPassword,
+} from "ant-design-vue/es";
+import { computed } from "vue";
+import { useI18n } from "vue-i18n";
 
-import { useAuthLogin } from '../composables/useAuthLogin'
-import { normalizeBranchCode } from '../utils/auth.util'
-import type { ILoginReq } from '../models/auth.type'
+import { useAuthLogin } from "../composables/useAuthLogin";
+import { normalizeBranchCode } from "../utils/auth.util";
+import type { ILoginReq } from "../models/auth.type";
 
-const { t } = useI18n()
-const { form, submitting, errorMessage, submit } = useAuthLogin()
+const { t } = useI18n();
+const { form, submitting, errorMessage, submit } = useAuthLogin();
 
 const rules = computed<Record<keyof ILoginReq, RuleObject[]>>(() => ({
-  branchCode: [{ required: true, message: t('auth.login.branchCodeRequired') }],
+  branchCode: [{ required: true, message: t("auth.login.branchCodeRequired") }],
   username: [
-    { required: true, message: t('auth.login.usernameRequired') },
-    { min: 5, message: t('auth.login.usernameMin') },
+    { required: true, message: t("auth.login.usernameRequired") },
+    { min: 5, message: t("auth.login.usernameMin") },
   ],
   password: [
-    { required: true, message: t('auth.login.passwordRequired') },
-    { min: 6, message: t('auth.login.passwordMin') },
+    { required: true, message: t("auth.login.passwordRequired") },
+    { min: 6, message: t("auth.login.passwordMin") },
   ],
-}))
+}));
 
 function onBranchCodeUpdate(value: string) {
-  form.value.branchCode = normalizeBranchCode(value)
+  form.value.branchCode = normalizeBranchCode(value);
 }
 </script>
 
 <template>
-  <Card>
-    <template #title>
-      <TypographyTitle
-        :level="1"
-        :title="t('auth.login.title')"
-      />
-      <TypographyText :text="t('auth.login.subtitle')" />
-    </template>
+  <Alert v-if="errorMessage" type="error" :message="errorMessage" show-icon />
 
-    <Alert
-      v-if="errorMessage"
-      type="error"
-      :message="errorMessage"
-      class="mb-4"
-      show-icon
-    />
-
-    <Form
-      layout="vertical"
-      :model="form"
-      :rules="rules"
-      @finish="submit"
-    >
-      <FormItem
-        :label="t('auth.login.branchCode')"
-        name="branchCode"
+  <Form layout="vertical" :model="form" :rules="rules" @finish="submit">
+    <FormItem :label="t('auth.login.branchCode')" name="branchCode">
+      <Input
+        :value="form.branchCode"
+        autocomplete="organization"
+        @update:value="onBranchCodeUpdate"
       >
-        <Input
-          :value="form.branchCode"
-          autocomplete="organization"
-          @update:value="onBranchCodeUpdate"
-        >
-          <template #prefix>
-            <Icon
-              icon="mdi:office-building-outline"
-              class="text-black/45"
-            />
-          </template>
-        </Input>
-      </FormItem>
+        <template #prefix>
+          <Icon icon="mdi:office-building-outline" class="text-black/45" />
+        </template>
+      </Input>
+    </FormItem>
 
-      <FormItem
-        :label="t('auth.login.username')"
-        name="username"
-      >
-        <Input
-          v-model:value="form.username"
-          autocomplete="username"
-        >
-          <template #prefix>
-            <Icon
-              icon="mdi:account-outline"
-              class="text-black/45"
-            />
-          </template>
-        </Input>
-      </FormItem>
+    <FormItem :label="t('auth.login.username')" name="username">
+      <Input v-model:value="form.username" autocomplete="username">
+        <template #prefix>
+          <Icon icon="mdi:account-outline" class="text-black/45" />
+        </template>
+      </Input>
+    </FormItem>
 
-      <FormItem
-        :label="t('auth.login.password')"
-        name="password"
-      >
-        <InputPassword
-          v-model:value="form.password"
-          autocomplete="current-password"
-        >
-          <template #prefix>
-            <Icon
-              icon="mdi:lock-outline"
-              class="text-black/45"
-            />
-          </template>
-        </InputPassword>
-      </FormItem>
+    <FormItem :label="t('auth.login.password')" name="password">
+      <InputPassword v-model:value="form.password" autocomplete="current-password">
+        <template #prefix>
+          <Icon icon="mdi:lock-outline" class="text-black/45" />
+        </template>
+      </InputPassword>
+    </FormItem>
 
-      <Button
-        type="primary"
-        html-type="submit"
-        block
-        :loading="submitting"
-      >
-        <span class="inline-flex items-center justify-center gap-2">
-          <Icon icon="mdi:login" />
-          {{ t('auth.login.submit') }}
-        </span>
-      </Button>
-    </Form>
-  </Card>
+    <!-- <Button type="primary" html-type="submit" block :loading="submitting"> -->
+          <!-- <template #icon>
+            <Icon icon="mdi:login" />
+          </template> -->
+        {{ t("auth.login.submit") }}
+    <!-- </Button> -->
+  </Form>
 </template>
