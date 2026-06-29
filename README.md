@@ -1,4 +1,4 @@
-# inquiry-hub
+# .
 
 This template should help get you started developing with Vue 3 in Vite.
 
@@ -9,7 +9,7 @@ This template should help get you started developing with Vue 3 in Vite.
 ## Recommended Browser Setup
 
 - Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
+  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
   - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
 - Firefox:
   - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
@@ -26,25 +26,25 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 ## Project Setup
 
 ```sh
-bun install
+npm install
 ```
 
 ### Compile and Hot-Reload for Development
 
 ```sh
-bun dev
+npm run dev
 ```
 
 ### Type-Check, Compile and Minify for Production
 
 ```sh
-bun run build
+npm run build
 ```
 
 ### Run Unit Tests with [Vitest](https://vitest.dev/)
 
 ```sh
-bun test:unit
+npm run test:unit
 ```
 
 ### Run End-to-End Tests with [Playwright](https://playwright.dev)
@@ -54,20 +54,20 @@ bun test:unit
 npx playwright install
 
 # When testing on CI, must build the project first
-bun run build
+npm run build
 
 # Runs the end-to-end tests
-bun test:e2e
+npm run test:e2e
 # Runs the tests only on Chromium
-bun test:e2e --project=chromium
+npm run test:e2e -- --project=chromium
 # Runs the tests of a specific file
-bun test:e2e tests/example.spec.ts
+npm run test:e2e -- tests/example.spec.ts
 # Runs the tests in debug mode
-bun test:e2e --debug
+npm run test:e2e -- --debug
 ```
 
 ### Lint with [ESLint](https://eslint.org/)
 
 ```sh
-bun lint
+npm run lint
 ```
