@@ -15,9 +15,10 @@
     "lint:oxlint": "oxlint . --fix",
     "lint:eslint": "eslint . --fix --cache",
     "format": "oxfmt src/",
-    "openapi": "npx openapi-typescript http://10.0.85.160:8062/swagger/v1/swagger.json -o ./src/types/api.ts --export-type --immutable --additional-properties --alphabetize --default-non-nullable --array-length --path-params-as-types --generate-path-params --empty-objects-unknown --enum --dedupe-enums",
-    "api": "npx swagger-typescript-api generate --path http://10.0.85.160:8062/swagger/v1/swagger.json --output ./src/api --name api.ts --http-client axios --axios --generate-client --generate-route-types --generate-responses --extract-request-body --extract-response-body --extract-request-params --modular --module-name-first-tag --module-name-index 1 --clean-output --sort-types --sort-routes --add-readonly --union-enums --enum-names-as-values --type-prefix I --type-suffix DTO --responses-as-success --default-response-as-success --unwrap-response-data --disable-throw-on-error --single-http-client --templates ./templates --jsdoc --patch --silent",
-    "api2": "npx swagger-typescript-api generate --path http://10.0.85.160:8062/swagger/v1/swagger.json --output ./src/api --name api.ts --http-client axios --generate-client --generate-route-types --generate-responses --extract-request-body --extract-response-body --extract-request-params --extract-enums --modular --module-name-first-tag --clean-output --sort-types --sort-routes --add-readonly --union-enums --enum-names-as-values --type-prefix I --type-suffix DTO --default-response-as-success --single-http-client --unwrap-response-data --disable-throw-on-error"
+    "api": "npx swagger-typescript-api generate --path http://10.0.202.20:8091/swagger/v1/swagger.json --output ./src/api --name api.ts --http-client axios --axios --generate-client --generate-route-types --generate-responses --extract-request-body --extract-response-body --extract-request-params --modular --module-name-first-tag --module-name-index 1 --clean-output --sort-types --sort-routes --add-readonly --union-enums --enum-names-as-values --type-prefix I --type-suffix DTO --responses-as-success --default-response-as-success --unwrap-response-data --disable-throw-on-error --single-http-client --templates ./templates --jsdoc --patch --silent",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
   },
   "dependencies": {
     "@ant-design/colors": "^8.0.1",

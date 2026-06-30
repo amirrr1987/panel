@@ -1,0 +1,22 @@
+/* LTR inputs inside RTL layout */
+:where(.input-ltr).ant-input-number .ant-input-number-input {
+  direction: ltr;
+}
+
+/* .input-ltr.ant-input-affix-wrapper {
+  direction: ltr;
+}
+.input-ltr.ant-input-affix-wrapper input:not(:placeholder-shown) {
+  direction: ltr;
+}
+.input-ltr.ant-input-number-group-wrapper input:not(:placeholder-shown) {
+  direction: ltr;
+} */
+
+body {
+  font-family: var(--font-primary);
+}
+
+.custom-descriptions .ant-descriptions-item-content {
+  font-weight: 700;
+}

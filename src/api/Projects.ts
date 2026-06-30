@@ -11,15 +11,15 @@
  */
 
 import {
-  ICreateUserRequestDTO,
-  IV1SampleCreateUserCreateDataDTO,
-  IV1SampleCreateUserCreateParamsDTO,
-  IV1SampleGetCaptchaListDataDTO,
-  IV1SampleGetCaptchaListParamsDTO,
+  ICreateProjectDtoDTO,
+  IV1ProjectsCreateCreateDataDTO,
+  IV1ProjectsCreateCreateParamsDTO,
+  IV1ProjectsGetByFileNumberListDataDTO,
+  IV1ProjectsGetByFileNumberListParamsDTO,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
-export class Sample<SecurityDataType = unknown> {
+export class Projects<SecurityDataType = unknown> {
   http: HttpClient<SecurityDataType>;
 
   constructor(http: HttpClient<SecurityDataType>) {
@@ -29,18 +29,18 @@ export class Sample<SecurityDataType = unknown> {
   /**
    * No description
    *
-   * @tags Sample
-   * @name V1SampleCreateUserCreate
-   * @request POST:/api/v1/Sample/CreateUser
+   * @tags Projects
+   * @name V1ProjectsCreateCreate
+   * @request POST:/api/v1/Projects/Create
    * @secure
    */
-  v1SampleCreateUserCreate = (
-    { version }: IV1SampleCreateUserCreateParamsDTO,
-    data: ICreateUserRequestDTO,
+  v1ProjectsCreateCreate = (
+    { version }: IV1ProjectsCreateCreateParamsDTO,
+    data: ICreateProjectDtoDTO,
     params: RequestParams = {},
   ) =>
-    this.http.request<IV1SampleCreateUserCreateDataDTO, any>({
-      path: `/api/v1/Sample/CreateUser`,
+    this.http.request<IV1ProjectsCreateCreateDataDTO, any>({
+      path: `/api/v1/Projects/Create`,
       method: "POST",
       body: data,
       secure: true,
@@ -50,18 +50,19 @@ export class Sample<SecurityDataType = unknown> {
   /**
    * No description
    *
-   * @tags Sample
-   * @name V1SampleGetCaptchaList
-   * @request GET:/api/v1/Sample/GetCaptcha
+   * @tags Projects
+   * @name V1ProjectsGetByFileNumberList
+   * @request GET:/api/v1/Projects/GetByFileNumber
    * @secure
    */
-  v1SampleGetCaptchaList = (
-    { version }: IV1SampleGetCaptchaListParamsDTO,
+  v1ProjectsGetByFileNumberList = (
+    { version, ...query }: IV1ProjectsGetByFileNumberListParamsDTO,
     params: RequestParams = {},
   ) =>
-    this.http.request<IV1SampleGetCaptchaListDataDTO, any>({
-      path: `/api/v1/Sample/GetCaptcha`,
+    this.http.request<IV1ProjectsGetByFileNumberListDataDTO, any>({
+      path: `/api/v1/Projects/GetByFileNumber`,
       method: "GET",
+      query: query,
       secure: true,
       ...params,
     });

@@ -5,6 +5,6 @@ export const AUTH_ROUTE_NAME = {
   AUTH_REGISTER: 'auth.register',
 } as const
 export const AUTH_STORAGE_KEY = {
-  ACCESS_TOKEN: 'auth.access_token',
-  REFRESH_TOKEN: 'auth.refresh_token',
+  ACCESS_TOKEN: 'a.an',
+  REFRESH_TOKEN: 'a.rn',
 } as const

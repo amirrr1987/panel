@@ -1,6 +1,6 @@
 
 import { defineStore } from 'pinia'
-import { useStorage } from '@vueuse/core'
+import { useCssVar, useStorage } from '@vueuse/core'
 import type { OverrideToken } from 'ant-design-vue/es/theme/interface'
 import type { AliasToken } from 'ant-design-vue/es/theme/interface'
 import type { Direction, MappingAlgorithm, SizeType } from 'ant-design-vue/es/config-provider/context'
@@ -10,9 +10,20 @@ import fa_IR from 'ant-design-vue/es/locale/fa_IR'
 import en_US from 'ant-design-vue/es/locale/en_US'
 import { generateName } from '@/utils'
 import type { Language } from '@/models/app.type'
+import { THEME_FONT_FAMILY } from '../types/app.const'
 
-export const useSettingStore = defineStore(generateName('setting-store'), () => {
-  const token = useStorage<Partial<AliasToken>>(generateName('token'), {});
+export const useThemeStore = defineStore(generateName('theme-store'), () => {
+
+
+  const colorPrimary = useCssVar('--color-primary')
+  
+  const token = useStorage<Partial<AliasToken>>(generateName('token'), {
+    colorPrimary: colorPrimary.value,
+    fontFamily: THEME_FONT_FAMILY.IRANSANS,
+    borderRadius: 6,
+    fontSize: 14,
+    colorBgLayout: '#e9e9e9',
+  });
   const components = useStorage<OverrideToken>(generateName('components'), {});
   const algorithm = useStorage<MappingAlgorithm | MappingAlgorithm[]>(generateName('algorithm'), []);
   const hashed = useStorage<boolean>(generateName('hashed'), false);

@@ -13,10 +13,14 @@ export const authRoutes: RouteRecordRaw[] = [
         path: 'login',
         name: AUTH_ROUTE_NAME.AUTH_LOGIN,
         component: () => import('../views/LoginView.vue'),
-        meta: { title: 'auth.login', guest: true },
+        meta: { title: 'auth.login.title', guest: true },
       },
 
     ],
+  },
+  {
+    path: '/login',
+    redirect: { name: AUTH_ROUTE_NAME.AUTH_LOGIN },
   },
   {
     path: '/auth:pathMatch(.*)*',

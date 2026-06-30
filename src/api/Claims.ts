@@ -11,15 +11,14 @@
  */
 
 import {
-  ICreateUserRequestDTO,
-  IV1SampleCreateUserCreateDataDTO,
-  IV1SampleCreateUserCreateParamsDTO,
-  IV1SampleGetCaptchaListDataDTO,
-  IV1SampleGetCaptchaListParamsDTO,
+  IAddClaimToUserRequestDTO,
+  IClaimsAddClaimToUserCreateDataDTO,
+  IClaimsRemoveClaimFromUserDeleteDataDTO,
+  IRemoveClaimFromUserRequestDTO,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
-export class Sample<SecurityDataType = unknown> {
+export class Claims<SecurityDataType = unknown> {
   http: HttpClient<SecurityDataType>;
 
   constructor(http: HttpClient<SecurityDataType>) {
@@ -29,18 +28,17 @@ export class Sample<SecurityDataType = unknown> {
   /**
    * No description
    *
-   * @tags Sample
-   * @name V1SampleCreateUserCreate
-   * @request POST:/api/v1/Sample/CreateUser
+   * @tags Claims
+   * @name ClaimsAddClaimToUserCreate
+   * @request POST:/api/Claims/AddClaimToUser
    * @secure
    */
-  v1SampleCreateUserCreate = (
-    { version }: IV1SampleCreateUserCreateParamsDTO,
-    data: ICreateUserRequestDTO,
+  claimsAddClaimToUserCreate = (
+    data: IAddClaimToUserRequestDTO,
     params: RequestParams = {},
   ) =>
-    this.http.request<IV1SampleCreateUserCreateDataDTO, any>({
-      path: `/api/v1/Sample/CreateUser`,
+    this.http.request<IClaimsAddClaimToUserCreateDataDTO, any>({
+      path: `/api/Claims/AddClaimToUser`,
       method: "POST",
       body: data,
       secure: true,
@@ -50,19 +48,21 @@ export class Sample<SecurityDataType = unknown> {
   /**
    * No description
    *
-   * @tags Sample
-   * @name V1SampleGetCaptchaList
-   * @request GET:/api/v1/Sample/GetCaptcha
+   * @tags Claims
+   * @name ClaimsRemoveClaimFromUserDelete
+   * @request DELETE:/api/Claims/RemoveClaimFromUser
    * @secure
    */
-  v1SampleGetCaptchaList = (
-    { version }: IV1SampleGetCaptchaListParamsDTO,
+  claimsRemoveClaimFromUserDelete = (
+    data: IRemoveClaimFromUserRequestDTO,
     params: RequestParams = {},
   ) =>
-    this.http.request<IV1SampleGetCaptchaListDataDTO, any>({
-      path: `/api/v1/Sample/GetCaptcha`,
-      method: "GET",
+    this.http.request<IClaimsRemoveClaimFromUserDeleteDataDTO, any>({
+      path: `/api/Claims/RemoveClaimFromUser`,
+      method: "DELETE",
+      body: data,
       secure: true,
+      type: ContentType.Json,
       ...params,
     });
 }

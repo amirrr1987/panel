@@ -11,13 +11,13 @@
  */
 
 import {
-  IConfigRequestDTO,
-  IVConfigAppSettingCreateDataDTO,
-  IVConfigAppSettingCreateParamsDTO,
+  ICaptchaGenerateListDataDTO,
+  ICaptchaVerifyCreateDataDTO,
+  ICaptchaVerifyDtoDTO,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
-export class ConfigApp<SecurityDataType = unknown> {
+export class Captcha<SecurityDataType = unknown> {
   http: HttpClient<SecurityDataType>;
 
   constructor(http: HttpClient<SecurityDataType>) {
@@ -27,23 +27,36 @@ export class ConfigApp<SecurityDataType = unknown> {
   /**
    * No description
    *
-   * @tags ConfigApp
-   * @name VConfigAppSettingCreate
-   * @request POST:/api/v{version}/ConfigApp/setting
+   * @tags Captcha
+   * @name CaptchaGenerateList
+   * @request GET:/api/Captcha/Generate
    * @secure
    */
-  vConfigAppSettingCreate = (
-    { version }: IVConfigAppSettingCreateParamsDTO,
-    data: IConfigRequestDTO,
+  captchaGenerateList = (params: RequestParams = {}) =>
+    this.http.request<ICaptchaGenerateListDataDTO, any>({
+      path: `/api/Captcha/Generate`,
+      method: "GET",
+      secure: true,
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Captcha
+   * @name CaptchaVerifyCreate
+   * @request POST:/api/Captcha/Verify
+   * @secure
+   */
+  captchaVerifyCreate = (
+    data: ICaptchaVerifyDtoDTO,
     params: RequestParams = {},
   ) =>
-    this.http.request<IVConfigAppSettingCreateDataDTO, any>({
-      path: `/api/v${version}/ConfigApp/setting`,
+    this.http.request<ICaptchaVerifyCreateDataDTO, any>({
+      path: `/api/Captcha/Verify`,
       method: "POST",
       body: data,
       secure: true,
       type: ContentType.Json,
-      format: "json",
       ...params,
     });
 }

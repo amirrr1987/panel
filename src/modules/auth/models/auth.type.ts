@@ -1,7 +1,5 @@
-import type { ILoginRequestDTO } from '@/api/data-contracts'
+import type { ILoginRequestDTO, IRefreshRequestDTO, IValidateTokenRequestDTO } from '@/api/data-contracts'
 
-import type { AuthStatus } from './auth.enum'
-import type { AuthUser } from './auth.model'
 import type { AUTH_ROUTE_NAME } from './auth.const'
 import type { AUTH_STORAGE_KEY } from './auth.const'
 
@@ -10,13 +8,34 @@ export type IAUTH_STORAGE_KEY = (typeof AUTH_STORAGE_KEY)[keyof typeof AUTH_STOR
 
 
 
-export type ILoginReq = ILoginRequestDTO
-export type LoginForm = ILoginReq
-export type AuthRouteName = IAUTH_ROUTE_NAME
 
-export type AuthSession = Pick<
-  AuthUser,
-  'accessToken' | 'refreshToken' | 'tokenType' | 'expiresIn' | 'refreshExpiresIn'
-> & {
-  status: AuthStatus
-}
+
+/**
+ * API Request & Response Types
+ *
+ * This section re-exports types for authentication-related API requests and responses.
+ * These types are primarily imported from the server's data contracts and re-aliased
+ * for consistent usage throughout the authentication module.
+ *
+ * @see ILoginRequestDTO, IRefreshRequestDTO, IValidateTokenRequestDTO in @/api/data-contracts
+ *
+ * Typical mappings:
+ * - `ILoginReq` / `ILoginRes` for login endpoints
+ * - `IRefreshTokenReq` / `IRefreshTokenRes` for token refresh endpoints
+ * - `IValidateTokenReq` / `IValidateTokenRes` for token validation endpoints
+ */
+
+export type ILoginReq = ILoginRequestDTO
+export type ILoginRes = ILoginRequestDTO
+
+export type IRefreshTokenReq = IRefreshRequestDTO
+export type IRefreshTokenRes = IRefreshRequestDTO
+
+export type IValidateTokenReq = IValidateTokenRequestDTO
+export type IValidateTokenRes = boolean
+
+
+
+// export type LoginForm = ILoginReq
+// export type AuthRouteName = IAUTH_ROUTE_NAME
+

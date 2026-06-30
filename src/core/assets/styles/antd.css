@@ -1,0 +1,87 @@
+/* Override Tailwind preflight so Ant Design button icon stays centered */
+button.ant-btn {
+  display: inline-flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+/* Theme tokens (override per theme if needed) */
+:root {
+  /* Tag preset: primary (see ant-design-vue Tag genPresetStyle) */
+  --ant-tag-primary-color: var(--color-primary-400);
+  --ant-tag-primary-bg: var(--color-primary-950);
+  --ant-tag-primary-border: var(--color-primary-900);
+
+  --ant-message-success-bg: #389e0d;
+  --ant-message-error-bg: #ff4d4f;
+  --ant-message-warning-bg: #faad14;
+  --ant-message-info-bg: #1890ff;
+  --ant-message-text: #fff;
+  --ant-message-icon: #fff;
+}
+
+/* Message backgrounds */
+.ant-message-notice-content:has(.ant-message-success),
+.ant-message-custom-content:has(.ant-message-success) {
+  background: var(--ant-message-success-bg) !important;
+  color: var(--ant-message-text) !important;
+}
+
+.ant-message-notice-content:has(.ant-message-success) :where(.anticon),
+.ant-message-custom-content:has(.ant-message-success) :where(.anticon) {
+  color: var(--ant-message-icon) !important;
+}
+
+.ant-message-notice-content:has(.ant-message-error),
+.ant-message-custom-content:has(.ant-message-error) {
+  background: var(--ant-message-error-bg) !important;
+  color: var(--ant-message-text) !important;
+}
+
+.ant-message-notice-content:has(.ant-message-error) :where(.anticon),
+.ant-message-custom-content:has(.ant-message-error) :where(.anticon) {
+  color: var(--ant-message-icon) !important;
+}
+
+.ant-message-notice-content:has(.ant-message-warning),
+.ant-message-custom-content:has(.ant-message-warning) {
+  background: var(--ant-message-warning-bg) !important;
+  color: var(--ant-message-text) !important;
+}
+
+.ant-message-notice-content:has(.ant-message-warning) :where(.anticon),
+.ant-message-custom-content:has(.ant-message-warning) :where(.anticon) {
+  color: var(--ant-message-icon) !important;
+}
+
+.ant-message-notice-content:has(.ant-message-info),
+.ant-message-custom-content:has(.ant-message-info) {
+  background: var(--ant-message-info-bg) !important;
+  color: var(--ant-message-text) !important;
+}
+
+.ant-message-notice-content:has(.ant-message-info) :where(.anticon),
+.ant-message-custom-content:has(.ant-message-info) :where(.anticon) {
+  color: var(--ant-message-icon) !important;
+}
+
+/* Tag — preset color: primary */
+.ant-tag-primary {
+  color: var(--ant-tag-primary-color);
+  background: var(--ant-tag-primary-bg);
+  border-color: var(--ant-tag-primary-border);
+}
+
+.ant-tag-primary.ant-tag-borderless {
+  border-color: transparent;
+}
+
+/* Remove margin in tabbar */
+.ant-tabs .ant-tabs-nav {
+  margin: 0 0 0 0 !important;
+}
+
+
+

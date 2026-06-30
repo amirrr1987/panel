@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { authRoutes } from '@/modules/auth/routes/auth.route'
-import { useAuthStore } from '@/modules/auth/stores/auth.store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,8 +20,8 @@ const router = createRouter({
   ],
 })
 
-router.beforeEach((to) => {
-  const authStore = useAuthStore()
+router.beforeEach(async (to) => {
+  const authStore = await import('@/modules/auth/stores/auth.store').then(m => m.useAuthStore())
 
   if (to.meta.guest && authStore.isAuthenticated) {
     return { name: 'home' }

@@ -11,33 +11,24 @@
  */
 
 import type{
-  IAddClaimRequestDTO,
   IAddPolicyRequestDTO,
-  IAddRoleRequestDTO,
-  IGenerateTokenRequestDTO,
   ILoginRequestDTO,
   IRefreshRequestDTO,
-  IVAuthAddClaimCreateDataDTO,
-  IVAuthAddClaimCreateParamsDTO,
-  IVAuthAddPolicyCreateDataDTO,
-  IVAuthAddPolicyCreateParamsDTO,
-  IVAuthAddRoleCreateDataDTO,
-  IVAuthAddRoleCreateParamsDTO,
-  IVAuthCreateTokenCreateDataDTO,
-  IVAuthCreateTokenCreateParamsDTO,
-  IVAuthIsAuthorizedListDataDTO,
-  IVAuthIsAuthorizedListParamsDTO,
-  IVAuthIsInRoleListDataDTO,
-  IVAuthIsInRoleListParamsDTO,
-  IVAuthLoginCreateDataDTO,
-  IVAuthLoginCreateParamsDTO,
-  IVAuthRefreshTokenCreateDataDTO,
-  IVAuthRefreshTokenCreateParamsDTO,
-  IVAuthValidateTokenCreateDataDTO,
-  IVAuthValidateTokenCreateParamsDTO,
+  IV1AuthAddPolicyCreateDataDTO,
+  IV1AuthAddPolicyCreateParamsDTO,
+  IV1AuthIsAuthorizedListDataDTO,
+  IV1AuthIsAuthorizedListParamsDTO,
+  IV1AuthIsInRoleListDataDTO,
+  IV1AuthIsInRoleListParamsDTO,
+  IV1AuthLoginCreateDataDTO,
+  IV1AuthLoginCreateParamsDTO,
+  IV1AuthRefreshTokenCreateDataDTO,
+  IV1AuthRefreshTokenCreateParamsDTO,
+  IV1AuthValidateTokenCreateDataDTO,
+  IV1AuthValidateTokenCreateParamsDTO,
   IValidateTokenRequestDTO,
 } from "./data-contracts";
-import { ContentType, HttpClient,type RequestParams } from "./http-client";
+import { ContentType, HttpClient, type RequestParams } from "./http-client";
 
 export class Auth<SecurityDataType = unknown> {
   http: HttpClient<SecurityDataType>;
@@ -50,194 +41,122 @@ export class Auth<SecurityDataType = unknown> {
    * No description
    *
    * @tags Auth
-   * @name VAuthAddClaimCreate
-   * @request POST:/api/v{version}/Auth/AddClaim
+   * @name V1AuthAddPolicyCreate
+   * @request POST:/api/v1/Auth/AddPolicy
    * @secure
    */
-  vAuthAddClaimCreate = (
-    { version }: IVAuthAddClaimCreateParamsDTO,
-    data: IAddClaimRequestDTO,
-    params: RequestParams = {},
-  ) =>
-    this.http.request<IVAuthAddClaimCreateDataDTO, any>({
-      path: `/api/v${version}/Auth/AddClaim`,
-      method: "POST",
-      body: data,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    });
-  /**
-   * No description
-   *
-   * @tags Auth
-   * @name VAuthAddPolicyCreate
-   * @request POST:/api/v{version}/Auth/AddPolicy
-   * @secure
-   */
-  vAuthAddPolicyCreate = (
-    { version }: IVAuthAddPolicyCreateParamsDTO,
+  v1AuthAddPolicyCreate = (
+    { version }: IV1AuthAddPolicyCreateParamsDTO,
     data: IAddPolicyRequestDTO,
     params: RequestParams = {},
   ) =>
-    this.http.request<IVAuthAddPolicyCreateDataDTO, any>({
-      path: `/api/v${version}/Auth/AddPolicy`,
+    this.http.request<IV1AuthAddPolicyCreateDataDTO, any>({
+      path: `/api/v1/Auth/AddPolicy`,
       method: "POST",
       body: data,
       secure: true,
       type: ContentType.Json,
-      format: "json",
       ...params,
     });
   /**
    * No description
    *
    * @tags Auth
-   * @name VAuthAddRoleCreate
-   * @request POST:/api/v{version}/Auth/AddRole
+   * @name V1AuthIsAuthorizedList
+   * @request GET:/api/v1/Auth/IsAuthorized
    * @secure
    */
-  vAuthAddRoleCreate = (
-    { version }: IVAuthAddRoleCreateParamsDTO,
-    data: IAddRoleRequestDTO,
+  v1AuthIsAuthorizedList = (
+    { version, ...query }: IV1AuthIsAuthorizedListParamsDTO,
     params: RequestParams = {},
   ) =>
-    this.http.request<IVAuthAddRoleCreateDataDTO, any>({
-      path: `/api/v${version}/Auth/AddRole`,
-      method: "POST",
-      body: data,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    });
-  /**
-   * No description
-   *
-   * @tags Auth
-   * @name VAuthCreateTokenCreate
-   * @request POST:/api/v{version}/Auth/CreateToken
-   * @secure
-   */
-  vAuthCreateTokenCreate = (
-    { version }: IVAuthCreateTokenCreateParamsDTO,
-    data: IGenerateTokenRequestDTO,
-    params: RequestParams = {},
-  ) =>
-    this.http.request<IVAuthCreateTokenCreateDataDTO, any>({
-      path: `/api/v${version}/Auth/CreateToken`,
-      method: "POST",
-      body: data,
-      secure: true,
-      type: ContentType.Json,
-      format: "json",
-      ...params,
-    });
-  /**
-   * No description
-   *
-   * @tags Auth
-   * @name VAuthIsAuthorizedList
-   * @request GET:/api/v{version}/Auth/IsAuthorized
-   * @secure
-   */
-  vAuthIsAuthorizedList = (
-    { version, ...query }: IVAuthIsAuthorizedListParamsDTO,
-    params: RequestParams = {},
-  ) =>
-    this.http.request<IVAuthIsAuthorizedListDataDTO, any>({
-      path: `/api/v${version}/Auth/IsAuthorized`,
+    this.http.request<IV1AuthIsAuthorizedListDataDTO, any>({
+      path: `/api/v1/Auth/IsAuthorized`,
       method: "GET",
       query: query,
       secure: true,
-      format: "json",
       ...params,
     });
   /**
    * No description
    *
    * @tags Auth
-   * @name VAuthIsInRoleList
-   * @request GET:/api/v{version}/Auth/IsInRole
+   * @name V1AuthIsInRoleList
+   * @request GET:/api/v1/Auth/IsInRole
    * @secure
    */
-  vAuthIsInRoleList = (
-    { version, ...query }: IVAuthIsInRoleListParamsDTO,
+  v1AuthIsInRoleList = (
+    { version, ...query }: IV1AuthIsInRoleListParamsDTO,
     params: RequestParams = {},
   ) =>
-    this.http.request<IVAuthIsInRoleListDataDTO, any>({
-      path: `/api/v${version}/Auth/IsInRole`,
+    this.http.request<IV1AuthIsInRoleListDataDTO, any>({
+      path: `/api/v1/Auth/IsInRole`,
       method: "GET",
       query: query,
       secure: true,
-      format: "json",
       ...params,
     });
   /**
    * No description
    *
    * @tags Auth
-   * @name VAuthLoginCreate
-   * @request POST:/api/v{version}/Auth/Login
+   * @name V1AuthLoginCreate
+   * @request POST:/api/v1/Auth/Login
    * @secure
    */
-  vAuthLoginCreate = (
-    { version }: IVAuthLoginCreateParamsDTO,
+  v1AuthLoginCreate = (
+    { version }: IV1AuthLoginCreateParamsDTO,
     data: ILoginRequestDTO,
     params: RequestParams = {},
   ) =>
-    this.http.request<IVAuthLoginCreateDataDTO, any>({
-      path: `/api/v${version}/Auth/Login`,
+    this.http.request<IV1AuthLoginCreateDataDTO, any>({
+      path: `/api/v1/Auth/Login`,
       method: "POST",
       body: data,
       secure: true,
       type: ContentType.Json,
-      format: "json",
       ...params,
     });
   /**
    * No description
    *
    * @tags Auth
-   * @name VAuthRefreshTokenCreate
-   * @request POST:/api/v{version}/Auth/RefreshToken
+   * @name V1AuthRefreshTokenCreate
+   * @request POST:/api/v1/Auth/RefreshToken
    * @secure
    */
-  vAuthRefreshTokenCreate = (
-    { version }: IVAuthRefreshTokenCreateParamsDTO,
+  v1AuthRefreshTokenCreate = (
+    { version }: IV1AuthRefreshTokenCreateParamsDTO,
     data: IRefreshRequestDTO,
     params: RequestParams = {},
   ) =>
-    this.http.request<IVAuthRefreshTokenCreateDataDTO, any>({
-      path: `/api/v${version}/Auth/RefreshToken`,
+    this.http.request<IV1AuthRefreshTokenCreateDataDTO, any>({
+      path: `/api/v1/Auth/RefreshToken`,
       method: "POST",
       body: data,
       secure: true,
       type: ContentType.Json,
-      format: "json",
       ...params,
     });
   /**
    * No description
    *
    * @tags Auth
-   * @name VAuthValidateTokenCreate
-   * @request POST:/api/v{version}/Auth/ValidateToken
+   * @name V1AuthValidateTokenCreate
+   * @request POST:/api/v1/Auth/ValidateToken
    * @secure
    */
-  vAuthValidateTokenCreate = (
-    { version }: IVAuthValidateTokenCreateParamsDTO,
+  v1AuthValidateTokenCreate = (
+    { version }: IV1AuthValidateTokenCreateParamsDTO,
     data: IValidateTokenRequestDTO,
     params: RequestParams = {},
   ) =>
-    this.http.request<IVAuthValidateTokenCreateDataDTO, any>({
-      path: `/api/v${version}/Auth/ValidateToken`,
+    this.http.request<IV1AuthValidateTokenCreateDataDTO, any>({
+      path: `/api/v1/Auth/ValidateToken`,
       method: "POST",
       body: data,
       secure: true,
       type: ContentType.Json,
-      format: "json",
       ...params,
     });
 }

@@ -1,3 +1,6 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-@source "../../modules/auth/**/*.{vue,ts}";
+@theme {
+  --font-primary: 'IranSans', 'Poppins', sans-serif;
+  --color-primary: #1677ff;
+}

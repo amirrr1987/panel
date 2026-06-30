@@ -3,10 +3,9 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from '@core/router'
-import { installAuthModule } from '@modules/auth/plugin/auth.plugin'
+import { installAuthModule } from '@modules/auth'
 
-import '@core/assets/styles/tailwind.css'
-import 'nprogress/nprogress.css'
+import '@core/assets/styles/main.css'
 
 const app = createApp(App)
 const pinia = createPinia()
