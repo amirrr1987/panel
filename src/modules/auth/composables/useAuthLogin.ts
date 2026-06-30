@@ -47,7 +47,7 @@ export function useAuthLogin() {
     else nProgress.done()
   })
 
-  const errorMessage = computed(() => (error.value ? parseAuthError(error.value) : ''))
+  const errorMessage = computed(() => (error ? parseAuthError(error.value) : ''))
 
   async function submit() {
     await submitLogin()

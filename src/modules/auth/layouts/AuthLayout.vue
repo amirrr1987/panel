@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { blue } from '@ant-design/colors'
 import { Card, Layout, LayoutContent } from 'ant-design-vue/es'
 import gsap from 'gsap'
 import { onMounted, useTemplateRef } from 'vue'

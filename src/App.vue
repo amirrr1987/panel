@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ConfigProvider } from 'ant-design-vue/es'
-import { useSettingStore } from './stores/setting.store';
+import { useSettingStore } from '@core/stores/setting.store';
 
 const setting = useSettingStore()
 </script>
