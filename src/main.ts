@@ -3,7 +3,7 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from '@core/router'
-import { installAuthModule } from '@modules/auth'
+import { installAuthModule } from '@auth'
 
 import '@core/assets/styles/main.css'
 

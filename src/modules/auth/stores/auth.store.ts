@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 
 import { AUTH_STORAGE_KEY } from '../models/auth.const'
 import type { AuthUser } from '../models/auth.model'
-import { generateName } from '@/utils'
+import { generateName } from '@/core/utils'
 import { computed } from 'vue'
 
 export const useAuthStore = defineStore('auth', () => {
@@ -16,7 +16,7 @@ export const useAuthStore = defineStore('auth', () => {
   // jwt.payload.value.
 
 
-  
+
 
   return {
     accessToken,

@@ -8,15 +8,15 @@ import { computed } from 'vue'
 import type { Locale } from 'ant-design-vue/es/locale-provider'
 import fa_IR from 'ant-design-vue/es/locale/fa_IR'
 import en_US from 'ant-design-vue/es/locale/en_US'
-import { generateName } from '@/utils'
-import type { Language } from '@/models/app.type'
+import { generateName } from '@/core/utils'
+import type { Language } from '@/core/models/app.type'
 import { THEME_FONT_FAMILY } from '../types/app.const'
 
 export const useThemeStore = defineStore(generateName('theme-store'), () => {
 
 
   const colorPrimary = useCssVar('--color-primary')
-  
+
   const token = useStorage<Partial<AliasToken>>(generateName('token'), {
     colorPrimary: colorPrimary.value,
     fontFamily: THEME_FONT_FAMILY.IRANSANS,

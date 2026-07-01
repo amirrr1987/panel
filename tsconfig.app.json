@@ -7,10 +7,14 @@
     "noUncheckedIndexedAccess": true,
 
     // Path mapping for cleaner imports.
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      "@core": ["./src/core"],
       "@core/*": ["./src/core/*"],
-      "@modules/*": ["./src/modules/*"],
+      "@auth": ["./src/modules/auth"],
+      "@auth/*": ["./src/modules/auth/*"],
+      "@shared": ["./src/shared"],
       "@shared/*": ["./src/shared/*"]
     },
 
